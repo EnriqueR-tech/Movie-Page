@@ -1,32 +1,37 @@
-<?
-$title = "";
-$runtime = "";
-$rating = "";
-$description = "";
+<?php
 
-if ( $_SERVER['REQUEST_METHOD'] == 'POST'){
+include "connection.php";
+
+if (isset($_GET["id"])){
+    $id = $_GET["id"];
+    $sql = "SELECT * FROM `movie details` WHERE movie_id=$id";
+    $result = $connection->query($sql);
+    if (!$result){
+        die("Invalid query: " . $connection->error);
+    }
+    else {
+        $row = $result->fetch_assoc();
+        print_r($row);
+    }
+}
+?>
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $id = $_POST["movie_id"];
     $title = $_POST["title"];
     $runtime = $_POST["runtime"];
     $rating = $_POST["rating"];
     $description = $_POST["description"];
 
-    $errorMessage = "";
-    $successMessage = "";
-
-    do{
-        if (empty($title) || empty($runtime) || empty($rating) || empty($description)){
-            $errorMessage = "All the Fields are Required";
-            break;
-        }
-        $title = "";
-        $runtime = "";
-        $rating = "";
-        $description = "";
-        $successMessage = 'Client Added Correctly';
-
-    }while (false);
+    $sql = "UPDATE `movie details` SET Title='$title', Runtime='$runtime', Rating='$rating', Description='$description' WHERE movie_id=$id";
+    if ($connection->query($sql) === TRUE) {
+        $successMessage = "Data updated successfully";
+    } else {
+        $errorMessage = "Error updating data: " . $connection->error;
+    }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,28 +45,27 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST'){
 <body>
     <div>
         <h2> Edit Movie Data </h2>
-        <form method="post">
+        <form action="edit.php" method="post">
+            <input type="hidden" name="id" value="<?php echo $id; ?>">
             <label>Title</label>
-            <input name="title" value=" <?php echo $title; ?>">
+            <input type="text" name="title" value=" <?php echo $row['Title']; ?>">
         
             <label>Runtime</label>
-            <input name="runtime" value="<?php echo $runtime; ?>">
+            <input type="text" name="runtime" value=" <?php echo $row['Runtime']; ?>">
 
             <label>Rating</label>
-            <input name="rating" value="<?php echo $rating; ?>">
+            <input type="text" name="rating" value=" <?php echo $row['Rating']; ?>">
 
             <label>Description</label>
-            <input name="description" value="<?php echo $description; ?>">
-
-
+            <input type="text" name="description" value=" <?php echo $row['Description']; ?>">
 
             <?php
             if (!empty($successMessage)){
                 echo "Data is success";
             }
             ?>
-            <button type="submit" href="">Send</button>
-            <a href="index.php" role="button">Cancel</a>
+            <button type="submit" href="">Update</button>
+            <a href="../index.php" role="button">Cancel</a>
         </form>
     </div>
 </body>

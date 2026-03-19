@@ -34,17 +34,8 @@
                 </tr>
                 <tbody id="insert">
                     <?php
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "";
-                    $dbname = "movielist";
-
-                    //create connection and test connection first
-                    $connection = new mysqli($servername, $username, $password, $dbname);
-                    if (!$connection) {
-                        die("Connection Failed: " . mysqli_connect_error());
-                    }
-
+                    //connect to database
+                    include "connection.php";
                     //read all row from database -> movie details table
                     $sql = "SELECT * FROM `movie details`";
                     $result = $connection->query($sql);
@@ -58,8 +49,8 @@
                             <td>" . $row["Rating"] ."</td>
                             <td>" . $row["Description"] ."</td>
                             <td>
-                            <a href='pages/edit.php?id=" . $id . "'>Edit</a>
-                            <a href='pages/delete.php' onclick='return confirm(\"Delete this movie?\")'>Delete</a>
+                            <a href='pages/edit.php?id=" . $row["movie_id"] . "'>Edit</a>
+                            <a href='pages/delete.php?id=" . $row["movie_id"] . "' onclick='return confirm(\"Delete this movie?\")'>Delete</a>
                             </td>
                         </tr>";
                     }
@@ -76,7 +67,7 @@
             <input type="text" id="title" name="title" required >
             
             <label for="rating">Rating</label>
-            <input type ="number" id="number" name="rating" min="0.0" step="0.1" max="10.0" required ></input>
+            <input type ="text" id="number" name="rating" min="0.0" step="0.1" max="10.0" required ></input>
 
             <label for="runtime">Runtime: </label>
             <input type="time" id="runtime" name="runtime" step="1" required>
