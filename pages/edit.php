@@ -2,6 +2,7 @@
 
 include "../connection.php";
 
+//Grabbing the table ID from the URL and matching it with the database to get the data of the specific row
 if (isset($_GET["id"])){
     $id = $_GET["id"];
     $sql = "SELECT * FROM `movie details` WHERE movie_id=$id";
@@ -15,6 +16,7 @@ if (isset($_GET["id"])){
     }
 }
 ?>
+
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $id = $_POST["id"];
@@ -23,9 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $rating = $_POST["rating"];
     $description = $_POST["description"];
 
-    $sql = "UPDATE `movie details` SET Title='$title', Runtime='$runtime', Rating='$rating', Description='$description' WHERE movie_id=$id";
+    $sql = "UPDATE `movie details`
+            SET Title='$title', Runtime='$runtime', Rating='$rating', Description='$description'
+            WHERE movie_id=$id";
     if ($connection->query($sql) === TRUE) {
-        $successMessage = "Data updated successfully";
+        header("Location: ../index.php");
+        exit();
     } else {
         $errorMessage = "Error updating data: " . $connection->error;
     }
