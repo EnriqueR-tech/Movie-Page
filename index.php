@@ -11,6 +11,7 @@
     <!-- Title -->
     <div class="title">
         <h1 id="title-text">Team Popcorn Movie</h1>
+        <h2 id="title-text">Authorized user: Edit Movie Data CRUD</h2>
     </div>
 
     <!-- Links -->
@@ -36,7 +37,7 @@
                     <?php
                     //connect to database
                     include "connection.php";
-                    
+
                     //read all row from database -> movie details table
                     $sql = "SELECT * FROM `movie details`";
                     $result = $connection->query($sql);
