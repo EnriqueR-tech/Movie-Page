@@ -36,6 +36,7 @@
                     <?php
                     //connect to database
                     include "connection.php";
+                    
                     //read all row from database -> movie details table
                     $sql = "SELECT * FROM `movie details`";
                     $result = $connection->query($sql);

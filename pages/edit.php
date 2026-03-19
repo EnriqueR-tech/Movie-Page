@@ -1,6 +1,6 @@
 <?php
 
-include "connection.php";
+include "../connection.php";
 
 if (isset($_GET["id"])){
     $id = $_GET["id"];
@@ -17,7 +17,7 @@ if (isset($_GET["id"])){
 ?>
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $id = $_POST["movie_id"];
+    $id = $_POST["id"];
     $title = $_POST["title"];
     $runtime = $_POST["runtime"];
     $rating = $_POST["rating"];
