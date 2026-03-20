@@ -4,85 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Popcorn Movie</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- <script src="Moviedata_table.js" defer></script> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    
 </head>
 <body>
     <!-- Title -->
-    <div class="title">
-        <h1 id="title-text">Team Popcorn Movie</h1>
-        <h2 id="title-text">Authorized user: Edit Movie Data CRUD</h2>
+    <div >
+        <h1>Team Popcorn Movie Site</h1>
     </div>
 
     <!-- Links -->
-    <div class="links">
-        <a href="#">Home</a>
-        <a href="#">Get Tickets</a>
-        <a href="#">About Us</a>
-        <a href="#">Menu/Food/Drinks</a>
-    </div>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark justify-content-center"> 
+        <ul class="nav  nav-pills nav-fill">
+            <li class="nav-item">
+                <a class="nav-link  active bg-danger" href="index.php">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">Get Tickets</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">About Us</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="pages/database.php">Add Movie (Authorized Users Only)</a>
+            </li>
+        </ul>
+    </nav>
 
     <!-- Page layout -->
-    <div class="page">
-        <div>
-            <table>
-                <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Runtime (HH:MM)</th>
-                    <th>Rating</th>
-                    <th>Description</th>
-                </tr>
-                <tbody id="insert">
-                    <?php
-                    //connect to database
-                    include "connection.php";
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 jumbotron" >
+                <h2>Welcome to Team Popcorn Movie Site!</h2>
+                <p>Discover the latest movies, get tickets, and enjoy a great movie experience with us.</p>
+            </div>
+            <div class="col-md-10 jumbotron">
+                <h2>Featured Movies</h2>
+                <ul>
+                    <li>Movie 1</li>
+                    <li>Movie 2</li>
+                    <li>Movie 3</li>
+                </ul>
+            </div>
+    <footer>
+    <p>Copyright &copy; 2024 Team Popcorn Movie</p>
+    <br>
+    <p> Designed by Team Popcorn: Enrique, Jesus, Hans, Nyab</p>
+    </footer>
 
-                    //read all row from database -> movie details table
-                    $sql = "SELECT * FROM `movie details`";
-                    $result = $connection->query($sql);
-
-                    //Read data of each row -> contains 5 rows
-                    while($row = $result->fetch_assoc()){
-                        echo "<tr>
-                            <td>" . $row["movie_id"] ."</td>
-                            <td>" . $row["Title"] ."</td>
-                            <td>" . $row["Runtime"] ."</td>
-                            <td>" . $row["Rating"] ."</td>
-                            <td>" . $row["Description"] ."</td>
-                            <td>
-                            <a href='pages/edit.php?id=" . $row["movie_id"] . "'>Edit</a>
-                            <a href='pages/delete.php?id=" . $row["movie_id"] . "' onclick='return confirm(\"Delete this movie?\")'>Delete</a>
-                            </td>
-                        </tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <div>
-        <p> Enter the movie you want to add:</p>
-        <form action="process-form.php" method="post">
-            <label for="title">Title: </label>
-            <input type="text" id="title" name="title" required >
-            
-            <label for="rating">Rating</label>
-            <input type ="text" id="number" name="rating" min="0.0" step="0.1" max="10.0" required ></input>
-
-            <label for="runtime">Runtime: </label>
-            <input type="time" id="runtime" name="runtime" step="1" required>
-
-            <label for="description">Description: </label>
-            <input type="text"id="desc" name="description" required >
-
-           <button type="submit">Send</button>
-        </form>
-
-        <?php
-            echo "hello world from team popcorn";
-        ?>
-    </div>        
+ 
 </body>
 </html>

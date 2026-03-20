@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             }
             ?>
             <button type="submit" href="">Update</button>
-            <a href="../index.php" role="button">Cancel</a>
+            <a href="database.php" role="button">Cancel</a>
         </form>
     </div>
 </body>

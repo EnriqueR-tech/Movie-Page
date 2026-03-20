@@ -1,4 +1,5 @@
 <?php
+    //To send datta from HTML/php page to MySQL database, we need to use $_POST method to get the data from the form and then use SQL query to insert the data into the database.
 
     //print_r($_POST);
     //recieve input from HTML/php page
