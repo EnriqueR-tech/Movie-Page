@@ -38,4 +38,4 @@ The wiki will explain detailed info about my code base on how and why it works.
 
 Its been fun typing this as im learning and re-learning along the way to show off my skills!
 
-(file:///C:/xampp/htdocs/MovieWebsite/assets/images/HelloWorld.jpg)
+![I am the blue rat guy!](file:///C:/xampp/htdocs/MovieWebsite/assets/images/HelloWorld.jpg)
