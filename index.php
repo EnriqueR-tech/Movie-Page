@@ -1,6 +1,6 @@
 <?php
 include "config/connection.php";
-$sql = "SELECT * FROM `movie details` where movie_id=1";
+$sql = "SELECT * FROM `movie details` where movie_id=3";
 //execute the query and get the result
 $result = $connection->query($sql);
 while($row = $result->fetch_assoc()){
@@ -8,6 +8,7 @@ while($row = $result->fetch_assoc()){
     $runtime = $row["Runtime"];
     $rating = $row["Rating"];  
     $description = $row["Description"];
+    $image = $row["image"];
 }
 ?>
 
@@ -58,7 +59,7 @@ while($row = $result->fetch_assoc()){
             <div class="col jumbotron">
                 <h2>Featured Movies</h2>
                 <div class="card">  
-                    <img class="card-img-top" src="https://m.media-amazon.com/images/I/81aA7hEEykL._AC_SY679_.jpg" alt="Card image cap">
+                    <img class="card-img-top" src="assets/images/<?php echo $image; ?>" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $title; ?></h5>
                         <p class="card-text"<?php echo "Runtime: " . $runtime; ?></p>
