@@ -11,7 +11,7 @@ Its currently uses a server to run this code using XAMPP on localhost. Its not d
 # About This code:
 This webpage is run on PHP for grabbing data off from MySQL. I run a local XAMPP server to create, edit, update, and debug live on the webpage. 
 
-# What do you need to run this
+## What do you need to run this
 You need a:
 * XAMPP Server from https://www.apachefriends.org/
 * Visual Studio code
@@ -23,7 +23,7 @@ For Visual Studio Code extensions:
 After that you can run my code and edit however you please. (Still new collaborating other team members through github commands, so excuse me if I make a mistake of pushing you out or mistakenly delete your code.)
 
 
-## Folder structure
+# The Folder structure
 I organize a set of files that contains a webpage and a script function that I can reuse without typing all over.
 1. At the **includes** folder contain php functions for database grabbing with no or little HTML code.
 
