@@ -48,7 +48,7 @@
                     <?php
                     
                     //connect to database
-                    include "../connection.php";
+                    include "../config/connection.php";
 
                     //read all row from database -> movie details table
                     $sql = "SELECT * FROM `movie details`";
@@ -63,8 +63,8 @@
                             <td>" . $row["Rating"] ."</td>
                             <td>" . $row["Description"] ."</td>
                             <td>
-                            <a href='edit.php?id=" . $row["movie_id"] . "' class='btn btn-primary'>Edit</a>
-                            <a href='delete.php?id=" . $row["movie_id"] . "' onclick='return confirm(\"Delete this movie?\")' class='btn btn-danger'>Delete</a>
+                            <a href='../includes/edit.php?id=" . $row["movie_id"] . "' class='btn btn-primary'>Edit</a>
+                            <a href='../includes/delete.php?id=" . $row["movie_id"] . "' onclick='return confirm(\"Delete this movie?\")' class='btn btn-danger'>Delete</a>
                             </td>
                         </tr>";
                     }

@@ -1,3 +1,17 @@
+<?php
+include "config/connection.php";
+$sql = "SELECT * FROM `movie details` where movie_id=1";
+//execute the query and get the result
+$result = $connection->query($sql);
+while($row = $result->fetch_assoc()){
+    $title = $row["Title"];
+    $runtime = $row["Runtime"];
+    $rating = $row["Rating"];  
+    $description = $row["Description"];
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +26,7 @@
 </head>
 <body>
     <!-- Title -->
-    <div >
+    <div class="container-fluid bg-dark text-white text-center pt-5 pb-5">
         <h1>Team Popcorn Movie Site</h1>
     </div>
 
@@ -35,25 +49,33 @@
     </nav>
 
     <!-- Page layout -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 jumbotron" >
+    <div class="container-xl mt-5">
+        <div class="row ">
+            <div class="col jumbotron" >
                 <h2>Welcome to Team Popcorn Movie Site!</h2>
-                <p>Discover the latest movies, get tickets, and enjoy a great movie experience with us.</p>
+                <p>Find our selection of Movies currently shown on the right!</p>
             </div>
-            <div class="col-md-10 jumbotron">
+            <div class="col jumbotron">
                 <h2>Featured Movies</h2>
-                <ul>
-                    <li>Movie 1</li>
-                    <li>Movie 2</li>
-                    <li>Movie 3</li>
-                </ul>
+                <div class="card">  
+                    <img class="card-img-top" src="https://m.media-amazon.com/images/I/81aA7hEEykL._AC_SY679_.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $title; ?></h5>
+                        <p class="card-text"<?php echo "Runtime: " . $runtime; ?></p>
+                        <p class="card-text"><?php echo "Rating: " . $rating; ?></p>
+                        <p class="card-text"><?php echo "Description: " . $description; ?></
+                </div>
             </div>
-    <footer>
-    <p>Copyright &copy; 2024 Team Popcorn Movie</p>
-    <br>
-    <p> Designed by Team Popcorn: Enrique, Jesus, Hans, Nyab</p>
-    </footer>
+        </div>
+    </div>
+    <div class="container-fluid  bg-dark text-white text-center p-3 mt-3 ">
+        <footer>
+        <p>Copyright &copy; 2024 Team Popcorn Movie</p>
+        <br>
+        <p> Designed by Team Popcorn: Enrique, Jesus, Hans, Nyab</p>
+        </footer>
+    </div>
+    
 
  
 </body>

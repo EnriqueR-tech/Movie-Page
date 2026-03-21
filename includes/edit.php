@@ -1,6 +1,6 @@
 <?php
 
-include "../connection.php";
+include "../config/connection.php";
 
 //Grabbing the table ID from the URL and matching it with the database to get the data of the specific row
 if (isset($_GET["id"])){
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             }
             ?>
             <button type="submit" href="">Update</button>
-            <a href="database.php" role="button">Cancel</a>
+            <a href="../pages/database.php" role="button">Cancel</a>
         </form>
     </div>
 </body>
