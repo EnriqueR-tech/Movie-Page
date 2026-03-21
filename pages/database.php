@@ -65,6 +65,7 @@
                             <td>
                             <a href='../includes/edit.php?id=" . $row["movie_id"] . "' class='btn btn-primary'>Edit</a>
                             <a href='../includes/delete.php?id=" . $row["movie_id"] . "' onclick='return confirm(\"Delete this movie?\")' class='btn btn-danger'>Delete</a>
+                            <a href='../includes/uploadimage.php?id=" . $row["movie_id"] . "' class='btn btn-link'>Upload Image</a>
                             </td>
                         </tr>";
                     }
