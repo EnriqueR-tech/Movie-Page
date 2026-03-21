@@ -9,7 +9,8 @@ Since the codebase is changed drastically from the main foundation code. It beca
 Its currently uses a server to run this code using XAMPP on localhost. Its not deployed or accessible to anyone but me. Databases that I create a new table and insert values are seen to me only.
 
 # About This code:
-This webpage is run on PHP for grabbing data off from MySQL. I run a local XAMPP server to create, edit, update, and debug live on the webpage. 
+This Web App primarly run on **HTML/CSS/Javascript** and **PHP to MySQL** for databases. 
+The decision was made from me, since the team need direction on how to build it. If any changes on the language or frame work. I will include them on README or the Wiki.
 
 ## What do you need to run this
 You need a:
