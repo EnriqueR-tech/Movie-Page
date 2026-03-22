@@ -20,9 +20,6 @@ else {
     $description = $row["Description"];
     $image = $row["image"];
 
-    $sql = "UPDATE `movie details`
-            SET image='$image'
-            WHERE movie_id=$id";
 }
 
 echo "<h1>Upload Image for Movie ID: " . $id . "</h1>";
@@ -75,6 +72,7 @@ if (isset($_POST["upload"])){
     
     if ($connection->query($sql) === TRUE){
         echo "<p>Image name updated in database</p>";
+
     }
     else {
         echo "<p>Error updating database: " . $connection->error . "</p>";

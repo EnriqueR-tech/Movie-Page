@@ -38,7 +38,7 @@
         </ul>
     </nav>
 
-    <!-- Page layout -->
+
  
 </body>
 </html>

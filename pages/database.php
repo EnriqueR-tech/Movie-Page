@@ -94,11 +94,12 @@
         </form>
 
     </div>        
+<div class="container-fluid  bg-dark text-white text-center p-3 mt-3 ">
     <footer>
-        <p>Copyright &copy; 2024 Team Popcorn Movie</p>
-        <br>
-        <p> Designed by Team Popcorn: Enrique, Jesus, Hans, Nyab</p>
+    <p>Copyright &copy; 2024 Team Popcorn Movie</p>
+    <br>
+    <p> Designed by Team Popcorn: Enrique, Jesus, Hans, Nyab</p>
     </footer>
-
+</div>
 </body>
 </html>

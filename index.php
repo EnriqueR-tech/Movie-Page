@@ -1,6 +1,6 @@
 <?php
 include "config/connection.php";
-$sql = "SELECT * FROM `movie details` where movie_id=7";
+$sql = "SELECT * FROM `movie details` where movie_id=6";
 //execute the query and get the result
 $result = $connection->query($sql);
 while($row = $result->fetch_assoc()){
@@ -52,32 +52,36 @@ while($row = $result->fetch_assoc()){
     <!-- Page layout -->
     <div class="container-xl mt-5">
         <div class="row ">
-            <div class="col jumbotron" >
+            <div class="col jumbotron">
                 <h2>Welcome to Team Popcorn Movie Site!</h2>
                 <p>Find our selection of Movies currently shown on the right!</p>
+                <a href="pages/currentmovie.php" class="btn btn-outline-primary">Explore More Movies</a>
             </div>
+
             <div class="col jumbotron">
                 <h2>Featured Movies</h2>
                 <div class="card">  
                     <img class="card-img-top" src="assets/images/<?php echo $image; ?>" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $title; ?></h5>
-                        <p class="card-text"<?php echo "Runtime: " . $runtime; ?></p>
+                        <p class="card-text"><?php echo "Runtime: " . $runtime; ?></p>
                         <p class="card-text"><?php echo "Rating: " . $rating; ?></p>
-                        <p class="card-text"><?php echo "Description: " . $description; ?></
+                        <p class="card-text"><?php echo "Description: " . $description; ?></p>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-    <div class="container-fluid  bg-dark text-white text-center p-3 mt-3 ">
-        <footer>
-        <p>Copyright &copy; 2024 Team Popcorn Movie</p>
-        <br>
-        <p> Designed by Team Popcorn: Enrique, Jesus, Hans, Nyab</p>
-        </footer>
-    </div>
-    
 
- 
+<div class="container-fluid  bg-dark text-white text-center p-3 mt-3 ">
+    <footer>
+    <p>Copyright &copy; 2024 Team Popcorn Movie</p>
+    <br>
+    <p> Designed by Team Popcorn: Enrique, Jesus, Hans, Nyab</p>
+    </footer>
+</div>
 </body>
+
+
 </html>
