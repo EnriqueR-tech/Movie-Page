@@ -1,6 +1,6 @@
 <?php
 include "config/connection.php";
-$sql = "SELECT * FROM `movie details` where movie_id=3";
+$sql = "SELECT * FROM `movie details` where movie_id=7";
 //execute the query and get the result
 $result = $connection->query($sql);
 while($row = $result->fetch_assoc()){

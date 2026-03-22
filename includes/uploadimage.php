@@ -50,6 +50,7 @@ echo "<p>Title: " . $title . "</p>";
 
     <input type="file" name="image" id="image" required>
     <button type="submit" class="btn btn-primary" name="upload">Upload Image</button>
+    </form>
 </div>
 
 //display image
@@ -57,7 +58,7 @@ echo "<p>Title: " . $title . "</p>";
 if (isset($_POST["upload"])){
     $id = $_POST["id"];
     $image = $_FILES["image"]["name"];
-    $target = "images/" . basename($image);
+    $target = "../assets/images/" . basename($image);
 
     //move the uploaded file to the target directory
     if (move_uploaded_file($_FILES["image"]["tmp_name"], $target)){
