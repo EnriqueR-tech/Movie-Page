@@ -16,6 +16,7 @@
     <!-- Title -->
     <div class="container-fluid bg-dark text-white text-center pt-5 pb-5">
         <h1>Team Popcorn Movie Site</h1>
+        <h2>Current Movies List</h2>
     </div>
 
     <!-- Links -->
@@ -40,31 +41,40 @@
     <div class="card">
         <img class="card-img-top" src="assets/images/movie1.jpg" alt="Card image cap">
         <div class="card-body">
-            <h5 class="card-title">Movie Title</h5>
-            <p class="card-text">Movie description goes here.</p>
+            <h5 class="card-title">Place holder </h5>
+            <p class="card-text">placeholder</p>
         </div>
     </div>
 </div>
-<div class="card-columns mt-5">
-    <?php
-    //connect to database 
-    include "../config/connection.php";
+<div class="container">
+    <div class="row mt-5">
 
-    //read all row from database -> movie details table
-    $sql = "SELECT * FROM `movie details`";
-    $result = $connection->query($sql);
+        <?php
+        include "../config/connection.php";
 
-    //Read data of each row -> contains 5 rows
-    while($row = $result->fetch_assoc()){
-        echo "<div class='card'>
-                <img class='card-img-top' src='../assets/images/" . $row["image"] . "' alt='Card image cap'>
-                <div class='card-body'>
-                    <h5 class='card-title'>" . $row["Title"] . "</h5>
-                    <p class='card-text'>" . $row["Description"] . "</p>
+        $sql = "SELECT * FROM `movie details`";
+        $result = $connection->query($sql);
+
+        while($row = $result->fetch_assoc()){
+            echo "
+            <div class='col-md-6 col-lg-4 mb-4'>
+                <div class='card h-100'>
+                    <img class='card-img-top' src='../assets/images/" . $row["image"] . "' alt='Movie Image'>
+                    
+                    <div class='card-body'>
+                        <h5 class='card-title bg-danger text-white p-2 '> " . $row["Title"] . "</h5>
+                        <h6 class='bg-success text-white p-2'>Runtime: " . $row["Runtime"] . "</h6>
+                        <h6 class='bg-info text-white p-2'>Rating: " . $row["Rating"] . "</h6>
+                        <p class='card-text'>" . $row["Description"] . "</p>
+                    </div>
                 </div>
             </div>";
-    } 
-    ?>
+        }
+        ?>
+
+    </div>
+
+</div>
 
 </body>
 
