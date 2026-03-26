@@ -1,14 +1,17 @@
-
 <?php
+// Establish connection to the MySQL database
 include "config/connection.php";
 
-// 1. BACKLOG REQ: Handle Filtering
-// Default to today's date if no date is picked
+/** * BACKLOG REQUIREMENT: Filterable by Date
+ * We check if a date was sent via the 'GET' method from the form.
+ * If not, we default to the current system date using date('Y-m-d').
+ */
 $selectedDate = isset($_GET['date']) ? $_GET['date'] : date('Y-m-d');
 
-// 2. BACKLOG REQ: Sorted Schedule
-// We join 'movie details' with a 'showtimes' table (assuming you have one)
-// If you don't have a showtimes table yet, this query pulls movies for the schedule.
+/** * BACKLOG REQUIREMENT: Sorted Schedule
+ * This SQL query pulls all movie details. 
+ * 'ORDER BY Title ASC' ensures the schedule is sorted alphabetically for the customer.
+ */
 $sql = "SELECT * FROM `movie details` ORDER BY Title ASC"; 
 $result = $connection->query($sql);
 ?>
@@ -61,23 +64,27 @@ $result = $connection->query($sql);
                 <hr>
                 
                 <?php 
+                // Check if any movies exist in the database
                 if ($result->num_rows > 0) {
+                    // Loop through each movie row fetched from the database
                     while($row = $result->fetch_assoc()) { 
                 ?>
-                    <div class="card mb-3">
+                    <div class="card mb-3 shadow-sm">
                         <div class="row no-gutters">
                             <div class="col-md-2 bg-light d-flex align-items-center justify-content-center">
                                 <img src="assets/images/<?php echo $row['image']; ?>" class="img-fluid p-2" alt="Movie Poster">
                             </div>
+                            
                             <div class="col-md-7">
                                 <div class="card-body">
-                                    <h5 class="card-title"><?php echo $row['Title']; ?></h5>
-                                    <p class="card-text text-muted"><?php echo $row['Rating'] . " | " . $row['Runtime']; ?></p>
+                                    <h5 class="card-title text-danger"><?php echo $row['Title']; ?></h5>
+                                    <p class="card-text text-muted small"><?php echo $row['Rating'] . " | " . $row['Runtime']; ?></p>
                                     <p class="card-text"><?php echo $row['Description']; ?></p>
                                 </div>
                             </div>
+                            
                             <div class="col-md-3 bg-light d-flex flex-column align-items-center justify-content-center">
-                                <p class="font-weight-bold mb-1">Start Times:</p>
+                                <p class="font-weight-bold mb-1">Available Times:</p>
                                 <div class="mb-2">
                                     <span class="badge badge-danger p-2">1:00 PM</span>
                                     <span class="badge badge-danger p-2">4:30 PM</span>
@@ -87,9 +94,10 @@ $result = $connection->query($sql);
                         </div>
                     </div>
                 <?php 
-                    }
+                    } // End of while loop
                 } else {
-                    echo "<p class='alert alert-warning'>No movies found for this date.</p>";
+                    // Feedback for user if the database is empty or filter returns zero results
+                    echo "<p class='alert alert-warning'>No movies currently scheduled.</p>";
                 }
                 ?>
             </div>
@@ -98,7 +106,7 @@ $result = $connection->query($sql);
 
     <div class="container-fluid bg-dark text-white text-center p-3 mt-3 ">
         <footer>
-            <p>Copyright &copy; 2024 Team Popcorn Movie</p>
+            <p>Copyright &copy; 2026 Team Popcorn Movie</p>
             <p>Designed by Team Popcorn: Enrique, Jesus, Hans, Nayab</p>
         </footer>
     </div>
