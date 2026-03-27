@@ -38,7 +38,7 @@ while($row = $result->fetch_assoc()){
                 <a class="nav-link  active bg-danger" href="index.php">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#">Get Tickets</a>
+                <a class="nav-link text-white" href="pages/getTickets.php">Get Tickets</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="#">About Us</a>
