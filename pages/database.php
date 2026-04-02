@@ -77,7 +77,7 @@
 
     <div class="container jumbotron" >
         <p> Enter the movie you want to add:</p>
-        <form action="process-form.php" method="post">
+        <form action="../includes/process-form.php" method="post">
             <label for="title">Title: </label>
             <input type="text" id="title" name="title" required >
             
