@@ -20,20 +20,26 @@
         <h1>Team Popcorn Movie Site</h1>
     </div>
 
-    <!-- Links -->
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark justify-content-center"> 
-        <ul class="nav nav-pills nav-fill">
+        <ul class="nav  nav-pills nav-fill">
             <li class="nav-item">
-                <a class="nav-link active" href="index.php">Home</a>
+                <a class="nav-link active" href="../index.php">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Get Tickets</a>
+                <a class="nav-link text-white" href="pages/GetTickets.php">Get Tickets</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">About Us</a>
+                <a class="nav-link text-white active bg-danger" href="#">About Us</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="pages/database.php">Add Movie (Authorized Users Only)</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Authorized Access
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="Movie-Database.php">Add Movie</a>
+                    <a class="dropdown-item" href="Create-calendar.php">Schedule Screening</a>
+
+                </div>
             </li>
         </ul>
     </nav>

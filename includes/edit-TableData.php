@@ -39,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,13 +46,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Popcorn Movie</title>
     <link rel="stylesheet" href="style.css">
-    <!-- <script src="Moviedata_table.js" defer></script> -->
 </head>
 <body>
     <div>
         <h2> Edit Movie Data </h2>
-        <form action="edit.php" method="post">
+        <form action="edit-TableData.php" method="post">
             <input type="hidden" name="id" value="<?php echo $id; ?>">
+
             <label>Title</label>
             <input type="text" name="title" value="<?php echo $row['Title']; ?>">
         
@@ -71,8 +70,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 echo "Data is success";
             }
             ?>
-            <button type="submit" href="">Update</button>
-            <a href="../pages/database.php" role="button">Cancel</a>
+            <button type="submit" href="../pages/Movie-Database.php">Update</button>
+            <a href="../pages/Movie-Database.php" role="button">Cancel</a>
         </form>
     </div>
 </body>

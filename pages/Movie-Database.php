@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Popcorn Movie</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-</head>
+
+<?php include "../config/header.php" ;?>
+
 <body>
     <!-- Title -->
     <div>
@@ -15,21 +10,29 @@
         <h2>Authorized user: Edit Movie Data CRUD</h2>
     </div>
 
-    <!-- Links -->
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark justify-content-center"> 
         <ul class="nav  nav-pills nav-fill">
+
             <li class="nav-item">
                 <a class="nav-link text-white" href="../index.php">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#">Get Tickets</a>
+                <a class="nav-link text-white" href="pages/GetTickets.php">Get Tickets</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="#">About Us</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-white disabled active bg-danger" href="pages/database.php">Add Movie (Authorized Users Only)</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Authorized Access
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item active bg-danger" href="Movie-Database.php">Add Movie</a>
+                    <a class="dropdown-item " href="Create-calendar.php">Schedule Screening</a>
+
+                </div>
             </li>
+
         </ul>
     </nav>
 
@@ -63,9 +66,9 @@
                             <td>" . $row["Rating"] ."</td>
                             <td>" . $row["Description"] ."</td>
                             <td>
-                            <a href='../includes/edit.php?id=" . $row["movie_id"] . "' class='btn btn-primary'>Edit</a>
-                            <a href='../includes/delete.php?id=" . $row["movie_id"] . "' onclick='return confirm(\"Delete this movie?\")' class='btn btn-danger'>Delete</a>
-                            <a href='../includes/uploadimage.php?id=" . $row["movie_id"] . "' class='btn btn-link'>Upload Image</a>
+                            <a href='../includes/edit-TableData.php?id=" . $row["movie_id"] . "' class='btn btn-primary'>Edit</a>
+                            <a href='../includes/delete-TableData.php?id=" . $row["movie_id"] . "' onclick='return confirm(\"Delete this movie?\")' class='btn btn-danger'>Delete</a>
+                            <a href='../includes/upload-TableImage.php?id=" . $row["movie_id"] . "' class='btn btn-link'>Upload Image</a>
                             </td>
                         </tr>";
                     }

@@ -8,20 +8,11 @@
     $runtime = $_POST["runtime"];
     $description = $_POST["description"];
     
-    //Test to see what data type it sends to MySQL for debugging purpose
+    //View the data we received from the form
     var_dump($title, $rating, $runtime, $description);
 
     //connect to database
-    $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "movielist";
-
-    //create connection and test connection first
-    $connection = new mysqli($servername, $username, $password, $dbname);
-    if (!$connection) {
-        die("Connection Failed: " . mysqli_connect_error());
-    }
+    include "../config/connection.php";
     
     //Finally Insert data to movie details TABLE
     //preparing anti-SQL injection attack with '?'
