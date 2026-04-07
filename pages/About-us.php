@@ -11,10 +11,6 @@
     
 </head>
 <body>
-    <?php
-        echo "hello world";
-    ?>
-
     <!-- Title -->
     <div>
         <h1>Team Popcorn Movie Site</h1>
@@ -43,7 +39,25 @@
             </li>
         </ul>
     </nav>
+<div class="container jumbotron">
+    <select class="custom-select" id="movieSelect">
+        <option selected>Choose Movie...</option>
+        <?php
+            include "../config/connection.php";
+            $sql = "SELECT movie_id, Title FROM `movie details`";
+            $result = $connection->query($sql);
 
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo "<option value='" . $row["movie_id"] . "'>" . $row["Title"] . "</option>";
+                }
+            } else {
+                echo "<option disabled>No movies found</option>";
+            }
+            $connection->close();
+        ?>
+    </select>
+</div>
 
  
 </body>

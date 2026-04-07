@@ -16,6 +16,9 @@ while($row = $result->fetch_assoc()){
 <html lang="en">
 
 <?php include "config/header.php" ;?>
+<head>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+</head>
 
 <body>
     <!-- Title -->
@@ -33,7 +36,7 @@ while($row = $result->fetch_assoc()){
                 <a class="nav-link text-white" href="pages/GetTickets.php">Get Tickets</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#">About Us</a>
+                <a class="nav-link text-white" href="pages/About-us.php">About Us</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,6 +54,11 @@ while($row = $result->fetch_assoc()){
 
 
 <!-- Page layout -->
+ <div class="container-xl mt-5 jumbotron">
+    <h2 class="text-center mb-4">Current Movie Showtime Calendar!</h2>
+    <div id="calendar"></div>
+
+ </div>
 <div class="container-xl mt-5">
     <div class="row ">
         <div class="col jumbotron">
@@ -81,6 +89,19 @@ while($row = $result->fetch_assoc()){
     <p> Designed by Team Popcorn: Enrique, Jesus, Hans, Nyab</p>
     </footer>
 </div>
+
+<script>
+    var calendar;
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'listWeek',
+            events:  'includes/get-screening.php' ,
+        });
+        calendar.render();
+    });
+    
+</script>
 </body>
 
 

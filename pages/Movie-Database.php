@@ -49,7 +49,6 @@
                 </tr>
                 <tbody>
                     <?php
-                    
                     //connect to database
                     include "../config/connection.php";
 
