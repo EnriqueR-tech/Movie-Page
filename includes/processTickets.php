@@ -16,3 +16,4 @@ if ($connection->query($sql) === TRUE) {
 } else {
     echo "❌ Error: " . $connection->error;
 }
+?>
