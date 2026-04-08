@@ -14,8 +14,7 @@ while($row = $result->fetch_assoc()){
 
 <!DOCTYPE html>
 <html lang="en">
-
-<?php include "config/header.php" ;?>
+<?php include "config/header.php"; ?>
 <head>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
 </head>
@@ -52,25 +51,23 @@ while($row = $result->fetch_assoc()){
     </nav>
 
 
-
 <!-- Page layout -->
- <div class="container-xl mt-5 jumbotron">
-    <h2 class="text-center mb-4">Current Movie Showtime Calendar!</h2>
-    <div id="calendar"></div>
-
+ <div class="container text-center mt-5 jumbotron">
+    <h2 class="text-center mb-4">Welcome to Team Popcorn Movie Site From Dallas College!</h2>
+    <p>Find our selection of Movies currently shown Down here!</p>
+    <a href="pages/Current-Movielist.php" class="btn btn-outline-primary btn-lg">Explore More Movies</a>
  </div>
 <div class="container-xl mt-5">
     <div class="row ">
         <div class="col jumbotron">
-            <h2>Welcome to Team Popcorn Movie Site!</h2>
-            <p>Find our selection of Movies currently shown on the right!</p>
-            <a href="pages/Current-Movielist.php" class="btn btn-outline-primary">Explore More Movies</a>
+            <h2 class="text-center mb-4">Current Movie Showtime Calendar!</h2>
+            <div class="bg-white h-75 p-4" id="calendar"></div>
         </div>
 
         <div class="col jumbotron">
-            <h2>Featured Movies</h2>
+            <h2 class="text-center mb-4">Featured Movies</h2>
             <div class="card">  
-                <img class="card-img-top" src="assets/images/<?php echo $image; ?>" alt="Card image cap">
+                <img class="card-img-top p-3" src="assets/images/<?php echo $image; ?>" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><?php echo $title; ?></h5>
                     <p class="card-text"><?php echo "Runtime: " . $runtime; ?></p>

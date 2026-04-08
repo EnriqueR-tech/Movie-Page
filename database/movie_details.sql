@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2026 at 12:46 AM
+-- Generation Time: Apr 08, 2026 at 10:45 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,15 +41,16 @@ CREATE TABLE `movie details` (
 --
 
 INSERT INTO `movie details` (`movie_id`, `Title`, `Runtime`, `Rating`, `Description`, `image`) VALUES
-(1, 'A Minecraft Movie', '01:41:00', 5.6, 'Four misfits are suddenly pulled through a mysterious portal into a bizarre cubic wonderland that thrives on imagination. To get back home they\'ll have to master this world while embarking on a quest with an unexpected expert crafter.', ''),
+(1, 'A Minecraft Movie', '01:41:00', 5.6, 'Four misfits are suddenly pulled through a mysterious portal into a bizarre cubic wonderland that thrives on imagination. To get back home they\'ll have to master this world while embarking on a quest with an unexpected expert crafter.', 'AMinecraftMovie.jpg'),
 (2, 'Summer Wars', '01:54:00', 7.4, 'A student tries to fix a problem he accidentally caused in OZ, a digital world, while pretending to be the fiancé of his friend at her grandmother\'s 90th birthday.', 'SummerWars.jpg'),
 (3, 'Point Break', '02:51:02', 7.2, 'An F.B.I. Agent goes undercover to catch a gang of surfers who may be bank robbers.', 'PointBreak.jpg'),
 (6, 'Starship Troopers(1997)', '02:09:00', 7.3, 'Humans, in a fascist militaristic future, wage war with giant alien bugs. Would you like to know more?', 'StarshipTroopers.jpg'),
 (7, 'Hello World', '00:00:10', 14.0, 'Hello From Dallas College and Team Popcorn. This is a test of Input Data on this form', 'HelloWorld.jpg'),
 (8, 'Transformers(2007)', '02:24:00', 7.6, 'An ancient struggle between two Cybertronian races, the heroic Autobots and the evil Decepticons, comes to Earth, with a clue to the ultimate power held by a teenager.', 'Transformers_2007.jpg'),
-(9, 'John Wick', '01:40:00', 10.0, '    Hello World Testing 3', ''),
-(10, '    Unbreakable(200)', '01:47:00', 10.0, '  A man learns something extraordinary about himself after a devastating accident.', ''),
-(12, 'Sasuage Party', '00:00:06', 17.0, 'A terrible rated R movie that tricked parents thinking this is a cute PG-13 movie with cutesy food characters, but it contain ADULT THEME AND ADULT HUMOR (college humor)', 'SasuageParty.jpg');
+(9, 'John Wick', '01:40:00', 10.0, '     Hello World Testing 4', ''),
+(10, 'Unbreakable(200)', '01:47:00', 10.0, '   A man learns something extraordinary about himself after a devastating accident.', ''),
+(12, 'Sasuage Party', '02:00:00', 2.0, ' A terrible rated R movie that tricked parents thinking this is a cute PG-13 movie with cutesy food characters, but it contain ADULT THEME AND ADULT HUMOR (college humor)', 'SasuageParty.jpg'),
+(14, 'Project Hail Mary', '02:03:50', 8.0, '  Science teacher Ryland Grace (Ryan Gosling) wakes up on a spaceship light years from home with no recollection of who he is or how he got there. As his memory returns, he begins to uncover his mission: solve the riddle of the mysterious substance causing the sun to die out. He must call on his scientific knowledge and unorthodox ideas to save everything on Earth from extinction… but an unexpected friendship means he may not have to do it alone.', '');
 
 --
 -- Indexes for dumped tables
@@ -69,7 +70,7 @@ ALTER TABLE `movie details`
 -- AUTO_INCREMENT for table `movie details`
 --
 ALTER TABLE `movie details`
-  MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

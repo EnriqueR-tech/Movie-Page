@@ -60,5 +60,9 @@
 </div>
 
  
+
+            <p>Find our selection of Movies currently shown on the right!</p>
+            <a href="pages/Current-Movielist.php" class="btn btn-outline-primary">Explore More Movies</a>
+
 </body>
 </html>
