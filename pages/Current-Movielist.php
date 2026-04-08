@@ -23,7 +23,7 @@
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark justify-content-center"> 
         <ul class="nav  nav-pills nav-fill">
             <li class="nav-item">
-                <a class="nav-link " href="../index.php">Home</a>
+                <a class="nav-link active bg-danger" href="../index.php">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="pages/GetTickets.php">Get Tickets</a>
@@ -44,15 +44,6 @@
         </ul>
     </nav>
 
-<div class="card-columns mt-5">
-    <div class="card">
-        <img class="card-img-top" src="assets/images/movie1.jpg" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Place holder </h5>
-            <p class="card-text">placeholder</p>
-        </div>
-    </div>
-</div>
 <div class="container">
     <div class="row mt-5">
 
