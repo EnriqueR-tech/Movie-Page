@@ -93,7 +93,20 @@ while($row = $result->fetch_assoc()){
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'listWeek',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'listWeek,dayGridMonth'
+            },
             events:  'includes/get-screening.php' ,
+
+            dateClick: function(info) {
+                if (calendar.view.type === 'dayGridMonth') {
+                    calendar.changeView('listDay', info.dateStr);
+                } else {
+                    calendar.changeView('listWeek');
+                }
+            }
         });
         calendar.render();
     });
