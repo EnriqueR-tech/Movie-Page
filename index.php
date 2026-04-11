@@ -83,7 +83,7 @@ while($row = $result->fetch_assoc()){
     <footer>
     <p>Copyright &copy; 2024 Team Popcorn Movie</p>
     <br>
-    <p> Designed by Team Popcorn: Enrique, Jesus, Hans, Nyab</p>
+    <p> Designed by Team Popcorn: Enrique, Jesus, Hans, Nayab</p>
     </footer>
 </div>
 
