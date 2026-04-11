@@ -92,60 +92,60 @@
         </div>        
     </div>
     
-<div class="container-fluid  bg-dark text-white text-center p-3 mt-3 ">
-    <footer>
-    <p>Copyright &copy; 2024 Team Popcorn Movie</p>
-    <br>
-    <p> Designed by Team Popcorn: Enrique, Jesus, Hans, Nyab</p>
-    </footer>
-</div>
-<script>
-    var calendar;
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'listWeek',
-            events:  '../includes/get-screening.php' ,
+    <div class="container-fluid  bg-dark text-white text-center p-3 mt-3 ">
+        <footer>
+        <p>Copyright &copy; 2024 Team Popcorn Movie</p>
+        <br>
+        <p> Designed by Team Popcorn: Enrique, Jesus, Hans, Nyab</p>
+        </footer>
+    </div>
+    <script>
+        var calendar;
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'listWeek',
+                events:  '../includes/get-screening.php' ,
+            });
+            calendar.render();
         });
-        calendar.render();
-    });
-    function addEvent() {
-        var movieId = document.getElementById('movieSelect').value;
-        var movieDate = document.getElementById('movieDate').value;
-        var movieStart = document.getElementById('movieStart').value;
-        var movieEnd = document.getElementById('movieEnd').value;
+        function addEvent() {
+            var movieId = document.getElementById('movieSelect').value;
+            var movieDate = document.getElementById('movieDate').value;
+            var movieStart = document.getElementById('movieStart').value;
+            var movieEnd = document.getElementById('movieEnd').value;
 
-        if (movieId === "Choose Movie..." || !movieDate || !movieStart || !movieEnd) {
-            alert("Please fill in all fields.");
-            return;
-        }
-        var start_datetime = movieDate + "T" + movieStart + ":00";
-        var end_datetime = movieDate + "T" + movieEnd + ":00";
-        $.ajax({
-            url: '../includes/save-screening.php',
-            type: 'POST',
-            data: {
-                movie_id: movieId,
-                movie_date: movieDate,
-                start_time: start_datetime,
-                end_time: end_datetime
-            },
-            success: function(response) {
-                alert(response);
-                if (response.includes("successfully")) {
-                    calendar.addEvent({
-                        title: 'Movie Screening: ' + $('#movieSelect option:selected').text(),
-                        start: start_datetime,
-                        end: end_datetime
-                    });
-                }
-            },
-            error: function() {
-                alert('Error saving screening.');
+            if (movieId === "Choose Movie..." || !movieDate || !movieStart || !movieEnd) {
+                alert("Please fill in all fields.");
+                return;
             }
-        });
-    }
-</script>
+            var start_datetime = movieDate + "T" + movieStart + ":00";
+            var end_datetime = movieDate + "T" + movieEnd + ":00";
+            $.ajax({
+                url: '../includes/save-screening.php',
+                type: 'POST',
+                data: {
+                    movie_id: movieId,
+                    movie_date: movieDate,
+                    start_time: start_datetime,
+                    end_time: end_datetime
+                },
+                success: function(response) {
+                    alert(response);
+                    if (response.includes("successfully")) {
+                        calendar.addEvent({
+                            title: 'Movie Screening: ' + $('#movieSelect option:selected').text(),
+                            start: start_datetime,
+                            end: end_datetime
+                        });
+                    }
+                },
+                error: function() {
+                    alert('Error saving screening.');
+                }
+            });
+        }
+    </script>
 
 </body> 
 </html>
