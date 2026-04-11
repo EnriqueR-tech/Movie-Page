@@ -57,7 +57,7 @@
             echo "
             <div class='col-md-6 col-lg-4 mb-4'>
                 <div class='card h-100'>
-                    <img class='card-img-top' src='../assets/images/" . $row["image"] . "' alt='Movie Image'>
+                    <img class='card-img-top p-2 rounded' src='../assets/images/" . $row["image"] . "' alt='Movie Image'>
                     
                     <div class='card-body'>
                         <h5 class='card-title bg-danger text-white text-center p-2 font-weight-bold'> " . $row["Title"] . "</h5>
