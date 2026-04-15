@@ -1,13 +1,15 @@
 <?php
+
 include "config/connection.php";
-$sql = "SELECT * FROM `movie details` where movie_id=6";
+$sql = "SELECT * FROM `movies` where movie_id=6";
+
 //execute the query and get the result
 $result = $connection->query($sql);
 while($row = $result->fetch_assoc()){
-    $title = $row["Title"];
-    $runtime = $row["Runtime"];
-    $rating = $row["Rating"];  
-    $description = $row["Description"];
+    $title = $row["title"];
+    $runtime = $row["runtime"];
+    $rating = $row["rating"];
+    $description = $row["description"];
     $image = $row["image"];
 }
 ?>
@@ -32,18 +34,18 @@ while($row = $result->fetch_assoc()){
                 <a class="nav-link active bg-danger" href="index.php">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="pages/GetTickets.php">Get Tickets</a>
+                <a class="nav-link text-white" href="pages/tickets.php">Get Tickets</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="pages/About-us.php">About Us</a>
+                <a class="nav-link text-white" href="pages/about.php">About Us</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Authorized Access
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="pages/Movie-Database.php">Add Movie</a>
-                    <a class="dropdown-item" href="pages/Create-calendar.php">Schedule Screening</a>
+                    <a class="dropdown-item" href="pages/movie-Database.php">Add Movie</a>
+                    <a class="dropdown-item" href="pages/calendar-create.php">Schedule Screening</a>
 
                 </div>
             </li>
@@ -55,7 +57,7 @@ while($row = $result->fetch_assoc()){
  <div class="container text-center mt-5 jumbotron">
     <h2 class="text-center mb-4">Welcome to Team Popcorn Movie Site From Dallas College!</h2>
     <p>Find our selection of Movies currently shown Down here!</p>
-    <a href="pages/Current-Movielist.php" class="btn btn-outline-primary btn-lg">Explore More Movies</a>
+    <a href="pages/movie-cards.php" class="btn btn-outline-primary btn-lg">Explore More Movies</a>
  </div>
 <div class="container-xl mt-5">
     <div class="row ">
@@ -98,7 +100,7 @@ while($row = $result->fetch_assoc()){
                 center: 'title',
                 right: 'listWeek,dayGridMonth'
             },
-            events:  'includes/get-screening.php' ,
+            events:  'includes/screening-fetch.php' ,
 
             dateClick: function(info) {
                 if (calendar.view.type === 'dayGridMonth') {

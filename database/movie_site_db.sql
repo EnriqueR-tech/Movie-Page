@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 08, 2026 at 10:46 PM
+-- Generation Time: Apr 15, 2026 at 04:48 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,29 +18,29 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `movielist`
+-- Database: `movie_site_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `movie details`
+-- Table structure for table `movies`
 --
 
-CREATE TABLE `movie details` (
+CREATE TABLE `movies` (
   `movie_id` int(11) NOT NULL,
   `Title` varchar(200) NOT NULL,
   `Runtime` time NOT NULL,
   `Rating` decimal(3,1) NOT NULL,
   `Description` text NOT NULL,
   `image` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Storing movie info';
 
 --
--- Dumping data for table `movie details`
+-- Dumping data for table `movies`
 --
 
-INSERT INTO `movie details` (`movie_id`, `Title`, `Runtime`, `Rating`, `Description`, `image`) VALUES
+INSERT INTO `movies` (`movie_id`, `Title`, `Runtime`, `Rating`, `Description`, `image`) VALUES
 (1, 'A Minecraft Movie', '01:41:00', 5.6, 'Four misfits are suddenly pulled through a mysterious portal into a bizarre cubic wonderland that thrives on imagination. To get back home they\'ll have to master this world while embarking on a quest with an unexpected expert crafter.', 'AMinecraftMovie.jpg'),
 (2, 'Summer Wars', '01:54:00', 7.4, 'A student tries to fix a problem he accidentally caused in OZ, a digital world, while pretending to be the fiancé of his friend at her grandmother\'s 90th birthday.', 'SummerWars.jpg'),
 (3, 'Point Break', '02:51:02', 7.2, 'An F.B.I. Agent goes undercover to catch a gang of surfers who may be bank robbers.', 'PointBreak.jpg'),
@@ -103,16 +103,17 @@ INSERT INTO `tickets` (`id`, `movie_id`, `customer_name`, `tickets`, `show_date`
 --
 
 --
--- Indexes for table `movie details`
+-- Indexes for table `movies`
 --
-ALTER TABLE `movie details`
+ALTER TABLE `movies`
   ADD PRIMARY KEY (`movie_id`);
 
 --
 -- Indexes for table `screening`
 --
 ALTER TABLE `screening`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `movie_id` (`movie_id`);
 
 --
 -- Indexes for table `tickets`
@@ -126,9 +127,9 @@ ALTER TABLE `tickets`
 --
 
 --
--- AUTO_INCREMENT for table `movie details`
+-- AUTO_INCREMENT for table `movies`
 --
-ALTER TABLE `movie details`
+ALTER TABLE `movies`
   MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
@@ -148,10 +149,16 @@ ALTER TABLE `tickets`
 --
 
 --
+-- Constraints for table `screening`
+--
+ALTER TABLE `screening`
+  ADD CONSTRAINT `screening_ibfk_1` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`movie_id`);
+
+--
 -- Constraints for table `tickets`
 --
 ALTER TABLE `tickets`
-  ADD CONSTRAINT `tickets_ibfk_1` FOREIGN KEY (`movie_id`) REFERENCES `movie details` (`movie_id`);
+  ADD CONSTRAINT `tickets_ibfk_1` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`movie_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

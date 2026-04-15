@@ -5,7 +5,7 @@
     $end_time = $_POST['end_time'];
 
     $check = $connection->prepare("
-    SELECT * FROM screening 
+    SELECT * FROM screenings 
     WHERE NOT (end_time <= ? OR start_time >= ?)");
 
     $check->bind_param("ss", $start_time, $end_time);
@@ -15,7 +15,7 @@
     if ($result->num_rows > 0) {
         echo "Conflict: Screening overlaps with an existing one.";
     } else {
-        $stmt = $connection->prepare("INSERT INTO screening (movie_id, start_time, end_time) VALUES (?, ?, ?)");
+        $stmt = $connection->prepare("INSERT INTO screenings (movie_id, start_time, end_time) VALUES (?, ?, ?)");
         $stmt->bind_param("iss", $movie_id, $start_time, $end_time);
         
         if ($stmt->execute()) {

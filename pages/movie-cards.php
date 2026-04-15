@@ -50,7 +50,7 @@
         <?php
         include "../config/connection.php";
 
-        $sql = "SELECT * FROM `movie details`";
+        $sql = "SELECT * FROM `movies`";
         $result = $connection->query($sql);
 
         while($row = $result->fetch_assoc()){
@@ -60,10 +60,10 @@
                     <img class='card-img-top p-2 rounded' src='../assets/images/" . $row["image"] . "' alt='Movie Image'>
                     
                     <div class='card-body'>
-                        <h5 class='card-title bg-danger text-white text-center p-2 font-weight-bold'> " . $row["Title"] . "</h5>
-                        <h6 class='bg-success text-white p-2'>Runtime: " . $row["Runtime"] . "</h6>
-                        <h6 class='bg-info text-white p-2'>Rating: " . $row["Rating"] . "</h6>
-                        <p class='card-text bg-secondary text-white p-4 '>" . $row["Description"] . "</p>
+                        <h5 class='card-title bg-danger text-white text-center p-2 font-weight-bold'> " . $row["title"] . "</h5>
+                        <h6 class='bg-success text-white p-2'>Runtime: " . $row["runtime"] . "</h6>
+                        <h6 class='bg-info text-white p-2'>Rating: " . $row["rating"] . "</h6>
+                        <p class='card-text bg-secondary text-white p-4 '>" . $row["description"] . "</p>
                     </div>
                 </div>
             </div>";
