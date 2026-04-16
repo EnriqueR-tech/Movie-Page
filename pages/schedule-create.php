@@ -26,19 +26,20 @@
             <li class="nav-item">
                 <a class="nav-link text-white" href="../index.php">Home</a>
             </li>
+            <li class="nav-item"><a class="nav-link text-white" href="movie-cards.php">Movies</a></li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="pages/GetTickets.php">Get Tickets</a>
+                <a class="nav-link text-white" href="tickets-purchase.php">Get Tickets</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#">About Us</a>
+                <a class="nav-link text-white" href="aboutUs.php">About Us</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Authorized Access
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="Movie-Database.php">Add Movie</a>
-                    <a class="dropdown-item active bg-danger" href="Create-calendar.php">Schedule Screening</a>
+                    <a class="dropdown-item" href="movie-database.php">Add Movie</a>
+                    <a class="dropdown-item active bg-danger" href="schedule-create.php">Schedule Screening</a>
 
                 </div>
             </li>
@@ -62,12 +63,12 @@
                         <option selected>Choose Movie...</option>
                         <?php
                             include "../config/connection.php";
-                            $sql = "SELECT movie_id, Title FROM `movie details`";
+                            $sql = "SELECT movie_id, title FROM `movies`";
                             $result = $connection->query($sql);
 
                             if ($result->num_rows > 0) {
                                 while($row = $result->fetch_assoc()) {
-                                    echo "<option value='" . $row["movie_id"] . "'>" . $row["Title"] . "</option>";
+                                    echo "<option value='" . $row["movie_id"] . "'>" . $row["title"] . "</option>";
                                 }
                             } else {
                                 echo "<option disabled>No movies found</option>";
@@ -105,7 +106,19 @@
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'listWeek',
-                events:  '../includes/get-screening.php' ,
+                headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'listWeek,dayGridMonth'
+            },
+                events:  '../handlers/screening-fetch.php' ,
+                dateClick: function(info) {
+                    if (calendar.view.type === 'dayGridMonth') {
+                        calendar.changeView('listDay', info.dateStr);
+                    } else {
+                        calendar.changeView('listWeek');
+                    }
+                }
             });
             calendar.render();
         });
@@ -122,7 +135,7 @@
             var start_datetime = movieDate + "T" + movieStart + ":00";
             var end_datetime = movieDate + "T" + movieEnd + ":00";
             $.ajax({
-                url: '../includes/save-screening.php',
+                url: '../handlers/screening-save.php',
                 type: 'POST',
                 data: {
                     movie_id: movieId,
