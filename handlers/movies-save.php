@@ -14,7 +14,7 @@
     
     //Finally Insert data to movie details TABLE
     //preparing anti-SQL injection attack with '?'
-    $sql = "INSERT INTO `movie details` ( `Title`, `Runtime`, `Rating`, `Description`)
+    $sql = "INSERT INTO `movies` ( `title`, `runtime`, `rating`, `description`)
         VALUES (?,?,?,?)";
     
     $stmt = mysqli_stmt_init($connection);

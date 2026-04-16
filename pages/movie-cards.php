@@ -1,78 +1,130 @@
 <?php
-?>
+// pages/allMovies.php
+session_start();
+include "../config/connection.php";
 
+// Fetch all movies for the main grid
+$result = $connection->query("SELECT * FROM movies ORDER BY movie_id ASC");
+$movies = $result->fetch_all(MYSQLI_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Popcorn Movie</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
 
-    <!-- Title -->
-    <div class="container-fluid bg-dark text-white text-center pt-5 pb-5">
+<head>
+    <?php include "../config/header.php"; ?>
+    <title>All Movies</title>
+   
+</head>
+
+<body>
+    <div class="container-fluid bg-dark text-white text-center py-4">
         <h1>Team Popcorn Movie Site</h1>
-        <h2>Current Movies List</h2>
     </div>
 
-    <!-- Links -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark justify-content-center"> 
-        <ul class="nav  nav-pills nav-fill">
-            <li class="nav-item">
-                <a class="nav-link active bg-danger" href="../index.php">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="pages/GetTickets.php">Get Tickets</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white" href="#">About Us</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Authorized Access
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="Movie-Database.php">Add Movie</a>
-                    <a class="dropdown-item" href="Create-calendar.php">Schedule Screening</a>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark px-4">
+        <div class="container-fluid d-flex align-items-center">
 
+            <div class="flex-grow-1 d-none d-lg-block" style="flex-basis: 0;"></div>
+
+            <div class="flex-grow-0">
+                <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item"><a class="nav-link text-white" href="../index.php">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active bg-danger" href="movie-cards.php">Movies</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="tickets-purchase.php">Get Tickets</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="aboutUs.php">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="flex-grow-1 d-flex justify-content-end " style="flex-basis: 0; padding-right: 20px;">
+                <div class="right-search">
+                    <input
+                        aria-label="Search"
+                        id="search-input"
+                        class="nav-search-input"
+                        placeholder="Search"
+                        type="text"
+                        name="query"
+                        autocomplete="off">
+
+                    <span class="search-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                    </span>
+
+                    <div id="search-preview" class="search-preview-dropdown"></div>
                 </div>
-            </li>
-        </ul>
+            </div>
+
+        </div>
     </nav>
 
-<div class="container">
-    <div class="row mt-5">
+    <!-- Movie Grid -->
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Now Showing</h1>
+        <div class="row" id="movieGrid">
+            <?php foreach ($movies as $movie): ?>
+                <div class="col-md-4 mb-4 movie-item">
+                    <div class="movie-card">
 
-        <?php
-        include "../config/connection.php";
+                        <a href="movie-details.php?movie_id=<?php echo $movie['movie_id']; ?>">
+                            <img src="../assets/images/<?php echo htmlspecialchars($movie['image']); ?>"
+                                alt="<?php echo htmlspecialchars($movie['title']); ?>"
+                                style="width:100%; height:300px; object-fit:cover; cursor:pointer;">
+                        </a>
 
-        $sql = "SELECT * FROM `movies`";
-        $result = $connection->query($sql);
+                        <div class="p-3">
+                            <h4><?php echo htmlspecialchars($movie['title']); ?></h4>
+                            <p>
+                                <?php
+                                $t = explode(":", $movie['runtime']);
+                                echo intval($t[0]) . " HR " . intval($t[1]) . " MIN | " . htmlspecialchars($movie['rating']);
+                                ?>
+                            </p>
+                            <a href="tickets-purchase.php?movie_id=<?php echo $movie['movie_id']; ?>" class="btn btn-danger btn-block">Get Tickets</a>
+                        </div>
 
-        while($row = $result->fetch_assoc()){
-            echo "
-            <div class='col-md-6 col-lg-4 mb-4'>
-                <div class='card h-100'>
-                    <img class='card-img-top p-2 rounded' src='../assets/images/" . $row["image"] . "' alt='Movie Image'>
-                    
-                    <div class='card-body'>
-                        <h5 class='card-title bg-danger text-white text-center p-2 font-weight-bold'> " . $row["title"] . "</h5>
-                        <h6 class='bg-success text-white p-2'>Runtime: " . $row["runtime"] . "</h6>
-                        <h6 class='bg-info text-white p-2'>Rating: " . $row["rating"] . "</h6>
-                        <p class='card-text bg-secondary text-white p-4 '>" . $row["description"] . "</p>
                     </div>
                 </div>
-            </div>";
-        }
-        ?>
-
+            <?php endforeach; ?>
+        </div>
     </div>
 
-</div>
+    <!-- Search preview JS -->
+    <script>
+        const searchInput = document.getElementById('search-input');
+        const searchPreview = document.getElementById('search-preview');
+
+        let timer;
+
+        searchInput.addEventListener('input', function() {
+            const term = this.value.trim();
+            clearTimeout(timer);
+
+            timer = setTimeout(() => {
+                if (term.length === 0) {
+                    searchPreview.innerHTML = '';
+                    searchPreview.style.display = 'none';
+                    return;
+                }
+
+                fetch(`../handlers/searchMovies.php?q=${encodeURIComponent(term)}`)
+                    .then(res => res.text())
+                    .then(data => {
+                        searchPreview.innerHTML = data;
+                        searchPreview.style.display = data.trim() === '' ? 'none' : 'block';
+                    });
+            }, 200); // debounce
+        });
+
+        // Hide preview when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!searchPreview.contains(e.target) && e.target !== searchInput) {
+                searchPreview.style.display = 'none';
+            }
+        });
+    </script>
 
 </body>
 
