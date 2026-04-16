@@ -51,7 +51,14 @@ if ($selectedMovie) {
                     <select class="form-control form-select" onchange="location.href='tickets-purchase.php?movie_id='+this.value">
                         <option value="">-- Choose Movie --</option>
                         <?php
-                        $all = $connection->query("SELECT * FROM movies");
+                        $all = $connection->prepare("SELECT DISTINCT m.* FROM movies m
+                            INNER JOIN screenings s ON m.movie_id = s.movie_id
+                            WHERE s.theater_name=?
+                            AND DATE(s.start_time) >= CURDATE()
+                            ORDER BY m.title");
+                        $all->bind_param("s", $displayTheater);
+                        $all->execute();
+                        $all = $all->get_result();
                         while ($m = $all->fetch_assoc()) {
                             $s = ($m['movie_id'] == $selectedMovie) ? "selected" : "";
                             echo "<option value='{$m['movie_id']}' $s>{$m['title']}</option>";

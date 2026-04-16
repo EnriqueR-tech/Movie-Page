@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2026 at 09:52 PM
+-- Generation Time: Apr 16, 2026 at 11:15 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -78,8 +78,9 @@ INSERT INTO `screenings` (`id`, `movie_id`, `theater_name`, `start_time`, `end_t
 (3, 14, 'AMC Heights 8', '2026-04-09 12:00:00', '2026-04-09 15:00:00', 100),
 (4, 2, 'AMC DINE-IN Mesquite 30', '2026-04-07 16:00:00', '2026-04-07 17:00:00', 98),
 (5, 1, 'AMC Plaza 15', '2026-04-06 14:00:00', '2026-04-06 16:00:00', 100),
-(7, 17, '', '2026-04-16 12:00:00', '2026-04-16 14:00:00', 30),
-(8, 14, 'AMC DINE-IN Mesquite 30', '2026-04-16 14:00:00', '2026-04-16 16:30:00', 30);
+(8, 14, 'AMC DINE-IN Mesquite 30', '2026-04-16 14:00:00', '2026-04-16 16:30:00', 30),
+(9, 17, 'AMC DINE-IN Mesquite 30', '2026-04-16 12:00:00', '2026-04-16 14:00:00', 0),
+(10, 2, 'AMC CLASSIC Forney 12', '2026-04-17 12:00:00', '2026-04-17 14:30:00', 0);
 
 -- --------------------------------------------------------
 
@@ -143,7 +144,7 @@ ALTER TABLE `movies`
 -- AUTO_INCREMENT for table `screenings`
 --
 ALTER TABLE `screenings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tickets`
