@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 16, 2026 at 11:15 PM
+-- Generation Time: Apr 17, 2026 at 12:57 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -79,8 +79,8 @@ INSERT INTO `screenings` (`id`, `movie_id`, `theater_name`, `start_time`, `end_t
 (4, 2, 'AMC DINE-IN Mesquite 30', '2026-04-07 16:00:00', '2026-04-07 17:00:00', 98),
 (5, 1, 'AMC Plaza 15', '2026-04-06 14:00:00', '2026-04-06 16:00:00', 100),
 (8, 14, 'AMC DINE-IN Mesquite 30', '2026-04-16 14:00:00', '2026-04-16 16:30:00', 30),
-(9, 17, 'AMC DINE-IN Mesquite 30', '2026-04-16 12:00:00', '2026-04-16 14:00:00', 0),
-(10, 2, 'AMC CLASSIC Forney 12', '2026-04-17 12:00:00', '2026-04-17 14:30:00', 0);
+(9, 17, 'AMC DINE-IN Mesquite 30', '2026-04-16 12:00:00', '2026-04-16 14:00:00', 60),
+(10, 2, 'AMC CLASSIC Forney 12', '2026-04-17 12:00:00', '2026-04-17 14:30:00', 28);
 
 -- --------------------------------------------------------
 
@@ -104,7 +104,8 @@ CREATE TABLE `tickets` (
 
 INSERT INTO `tickets` (`id`, `movie_id`, `customer_name`, `tickets`, `theater_loc`, `show_date`, `show_time`) VALUES
 (1, 2, 'Enrique R', 1, '', '2026-03-27', '15:00:00'),
-(2, 2, 'NEMO', 1, 'AMC DINE-IN Mesquite 30', '2026-04-07', '16:00:00');
+(2, 2, 'NEMO', 1, 'AMC DINE-IN Mesquite 30', '2026-04-07', '16:00:00'),
+(3, 2, 'NEMO', 2, 'AMC CLASSIC Forney 12', '2026-04-17', '12:00:00');
 
 --
 -- Indexes for dumped tables
@@ -138,7 +139,7 @@ ALTER TABLE `tickets`
 -- AUTO_INCREMENT for table `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `screenings`
@@ -150,7 +151,7 @@ ALTER TABLE `screenings`
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
