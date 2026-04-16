@@ -1,10 +1,13 @@
-On the config folder. This is where I resuse my code on every page.
+On the config folder. This is where I resuse the connection to *movie_site_db*, header, and theaters.
 
 **connection.php** what I use most frequently to connect my database of MySQL through php, plus connection testing.
 
-The other 3 files are unused for this time being. I tried to implement a uniform navigation bar links when every page is added and must be hardcode to address the changes. It became problematic of file directory inside pages folder needing to add config/connection.php for connection. Then includes folder to perform data processing and display. The <nav> pages didnt work when implementing *header.php* as I described above earlier, so im looking ways how to make my code less spagagettified and more simpler to read.
+**Header**: Contains the script files that are used to run this website, mainly for design such as Bootstrap and W3. The other script
+contains the fullcalendarJS framework to render calender, create, and read scheduling from the movies.
 
+**theater**: A JSON format of theater selection (in AMC or can be changed if our product managers ask for Dallas College Location Only) to act
+as 'cache data' for theater location. Its involved with **screenings* table data to send to MySQL and *tickets-purchase* to filter by location when purchasing tickets
 
-Its a dookieshow when I re-read my code base again for *minor tweaking*
+**style.css**: created by @jesus to give our website more personalized than barebones Bootstrap 4 style. Doesnt apply to *schedule-create* page
 
-Other than the rest of the files. I dont know anymore else to include this folder later on.
+Other than that, its all I have to include these files. May be added in the future (until May 14th for our last semester and I wont touch on it anymore.....sorta)
