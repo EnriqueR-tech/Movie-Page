@@ -73,7 +73,7 @@ if ($selectedMovie) {
 
             <div class="ticket-form">
                 <h3 class="mb-4 border-bottom pb-2">Reserve Seats</h3>
-                <form method="POST" action="../handlers/tickets-process.php">
+                <form method="POST" action="../handlers/tickets-save.php">
                     <input type="hidden" name="movie_id" value="<?php echo $selectedMovie; ?>">
                     
                     <div class="mb-3">
