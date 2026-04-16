@@ -76,6 +76,16 @@
                             $connection->close();
                         ?>
                     </select>
+                    <select class="custom-select" id="addTheater" name="theater_name">
+                        <option selected>Choose Theater...</option>
+                        <?php 
+                            include "../config/theaters.php";
+                            foreach ($theaters as $key => $theater) {
+                                echo "<option value='" . $theater['name'] . "'>" . $theater['name'] . "</option>";
+                            }
+                        ?>
+                    </select>
+                        
                     
                     <div class="input-group mt-3">
                         <input type="date" class="form-control" id="movieDate" placeholder="Select Date">
@@ -127,8 +137,9 @@
             var movieDate = document.getElementById('movieDate').value;
             var movieStart = document.getElementById('movieStart').value;
             var movieEnd = document.getElementById('movieEnd').value;
+            var theaterId = document.getElementById('addTheater').value;
 
-            if (movieId === "Choose Movie..." || !movieDate || !movieStart || !movieEnd) {
+            if (movieId === "Choose Movie..." || !movieDate || !movieStart || !movieEnd || theaterId === "Choose Theater...") {
                 alert("Please fill in all fields.");
                 return;
             }
@@ -139,6 +150,7 @@
                 type: 'POST',
                 data: {
                     movie_id: movieId,
+                    theater_name: theaterId,
                     movie_date: movieDate,
                     start_time: start_datetime,
                     end_time: end_datetime
