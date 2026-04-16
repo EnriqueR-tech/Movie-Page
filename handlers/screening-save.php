@@ -5,7 +5,7 @@
     $end_time = $_POST['end_time'];
 
     $check = $connection->prepare("
-    SELECT * FROM screening 
+    SELECT * FROM screenings 
     WHERE NOT (end_time <= ? OR start_time >= ?)");
 
     $check->bind_param("ss", $start_time, $end_time);
