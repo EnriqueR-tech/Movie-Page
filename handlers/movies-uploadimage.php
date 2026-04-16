@@ -6,7 +6,7 @@ include "../config/connection.php";
 $id = $_GET["id"];
 
 //select the movie details table and get the row with the matching ID
-$sql = "SELECT * FROM `movie details` WHERE movie_id=$id";  
+$sql = "SELECT * FROM `movies` WHERE movie_id=$id";  
 $result = $connection->query($sql);
 
 if (!$result){
@@ -14,10 +14,10 @@ if (!$result){
 }
 else {
     $row = $result->fetch_assoc();
-    $title = $row["Title"];
-    $runtime = $row["Runtime"];
-    $rating = $row["Rating"];  
-    $description = $row["Description"];
+    $title = $row["title"];
+    $runtime = $row["runtime"];
+    $rating = $row["rating"];
+    $description = $row["description"];
     $image = $row["image"];
 
 }
@@ -65,7 +65,7 @@ if (isset($_POST["upload"])){
     }
 
     //update the database with the image name
-    $sql = "UPDATE `movie details`
+    $sql = "UPDATE `movies`
             SET image='$image'
             WHERE movie_id=$id";
     

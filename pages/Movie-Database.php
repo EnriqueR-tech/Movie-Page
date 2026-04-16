@@ -16,19 +16,20 @@
             <li class="nav-item">
                 <a class="nav-link text-white" href="../index.php">Home</a>
             </li>
+            <li class="nav-item"><a class="nav-link text-white" href="movie-cards.php">Movies</a></li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="pages/GetTickets.php">Get Tickets</a>
+                <a class="nav-link text-white" href="tickets-purchase.php">Get Tickets</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="#">About Us</a>
+                <a class="nav-link text-white" href="aboutus.php">About Us</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Authorized Access
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item active bg-danger" href="Movie-Database.php">Add Movie</a>
-                    <a class="dropdown-item " href="Create-calendar.php">Schedule Screening</a>
+                    <a class="dropdown-item " href="schedule-create.php">Schedule Screening</a>
 
                 </div>
             </li>
@@ -38,36 +39,36 @@
 
     <!-- Page layout -->
     <div>
-        <div class="container-xl">
-            <table class="table table-bordered table-hover">
-                <tr>
+        <div class="container-xl mt-4 p-4 bg-white ">
+            <table class="table table-bordered table-hover> ">
+                <thead class="thead-dark">
                     <th>ID</th>
                     <th>Title</th>
                     <th>Runtime (HH:MM)</th>
                     <th>Rating</th>
                     <th>Description</th>
-                </tr>
+                </thead>
                 <tbody>
                     <?php
                     //connect to database
                     include "../config/connection.php";
 
                     //read all row from database -> movie details table
-                    $sql = "SELECT * FROM `movie details`";
+                    $sql = "SELECT * FROM `movies`";
                     $result = $connection->query($sql);
 
                     //Read data of each row -> contains 5 rows
                     while($row = $result->fetch_assoc()){
                         echo "<tr>
                             <td>" . $row["movie_id"] ."</td>
-                            <td>" . $row["Title"] ."</td>
-                            <td>" . $row["Runtime"] ."</td>
-                            <td>" . $row["Rating"] ."</td>
-                            <td>" . $row["Description"] ."</td>
+                            <td>" . $row["title"] ."</td>
+                            <td>" . $row["runtime"] ."</td>
+                            <td>" . $row["rating"] ."</td>
+                            <td>" . $row["description"] ."</td>
                             <td>
-                            <a href='../includes/edit-TableData.php?id=" . $row["movie_id"] . "' class='btn btn-primary'>Edit</a>
-                            <a href='../includes/delete-TableData.php?id=" . $row["movie_id"] . "' onclick='return confirm(\"Delete this movie?\")' class='btn btn-danger'>Delete</a>
-                            <a href='../includes/upload-TableImage.php?id=" . $row["movie_id"] . "' class='btn btn-link'>Upload Image</a>
+                            <a href='../handlers/movies-edit.php?id=" . $row["movie_id"] . "' class='btn mb-2' style='background-color: #2265e2; color: white;'>Edit</a>
+                            <a href='../handlers/movies-delete.php?id=" . $row["movie_id"] . "' onclick='return confirm(\"Delete this movie?\")' class='btn btn-danger mb-2'>Delete</a>
+                            <a href='../handlers/movies-uploadimage.php?id=" . $row["movie_id"] . "' class='btn btn-link'>Upload Image</a>
                             </td>
                         </tr>";
                     }
@@ -77,9 +78,9 @@
         </div>
     </div>
 
-    <div class="container jumbotron" >
+    <div class="container jumbotron bg-dark text-white mt-4">
         <p> Enter the movie you want to add:</p>
-        <form action="../includes/process-form.php" method="post">
+        <form class="form-group " action="../handlers/movies-save.php" method="post">
             <label for="title">Title: </label>
             <input type="text" id="title" name="title" required >
             
@@ -92,7 +93,7 @@
             <label for="description">Description: </label>
             <input type="text"id="desc" name="description" required >
 
-           <button type="submit">Send</button>
+           <button class="btn btn-success" type="submit">Send</button>
         </form>
 
     </div>        
