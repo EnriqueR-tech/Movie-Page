@@ -60,6 +60,12 @@ $movies = $result->fetch_all(MYSQLI_ASSOC);
         </div>
     </nav>
 
+    <!-- To Do
+     1. Implement a modal pop up to get full details of the movie when the user clicks on the movie card
+        1a. Replace 'Get Tickets' button with 'View Details' button that will trigger the modal pop up
+    
+-->
+
     <!-- Movie Grid -->
     <div class="container mt-4">
         <h1 class="text-center mb-4">Now Showing</h1>
