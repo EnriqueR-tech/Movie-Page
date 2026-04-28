@@ -23,7 +23,7 @@ if ($result->num_rows == 0) {
 // Output mini preview links
 while ($row = $result->fetch_assoc()) { 
 ?>
-    <a href="../pages/currentMovieDetails.php?movie_id=<?php echo $row['movie_id']; ?>" 
+    <a href="../pages/movie-details.php?movie_id=<?php echo $row['movie_id']; ?>" 
        class="search-preview d-flex align-items-center text-decoration-none text-white mb-2" 
        style="gap:10px; padding:5px; border-radius:4px; transition:background 0.2s;">
         <img src="../assets/images/<?php echo htmlspecialchars($row['image']); ?>" 

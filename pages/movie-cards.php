@@ -1,5 +1,4 @@
 <?php
-// pages/allMovies.php
 session_start();
 include "../config/connection.php";
 
@@ -13,7 +12,6 @@ $movies = $result->fetch_all(MYSQLI_ASSOC);
 <head>
     <?php include "../config/header.php"; ?>
     <title>All Movies</title>
-   
 </head>
 
 <body>
@@ -62,9 +60,8 @@ $movies = $result->fetch_all(MYSQLI_ASSOC);
 
     <!-- To Do
      1. Implement a modal pop up to get full details of the movie when the user clicks on the movie card
-        1a. Replace 'Get Tickets' button with 'View Details' button that will trigger the modal pop up
-    
--->
+        1a. Replace 'Get Tickets' button with 'View Details' button that will trigger the modal pop up    
+    -->
 
     <!-- Movie Grid -->
     <div class="container mt-4">
@@ -88,49 +85,53 @@ $movies = $result->fetch_all(MYSQLI_ASSOC);
                                 echo intval($t[0]) . " HR " . intval($t[1]) . " MIN | " . htmlspecialchars($movie['rating']);
                                 ?>
                             </p>
-                            <a href="tickets-purchase.php?movie_id=<?php echo $movie['movie_id']; ?>" class="btn btn-danger btn-block">Get Tickets</a>
+                            <button class="btn btn-danger btn-block"
+                             data-toggle="modal" data-target="#movieModal"
+                              data-title="<?php echo htmlspecialchars($movie['title']); ?>" data-image="<?php echo htmlspecialchars($movie['image']); ?>" data-description="<?php echo htmlspecialchars($movie['description']); ?>"    
+                              data-movie-id="<?php echo $movie['movie_id']; ?>">More Details</button>
                         </div>
-
                     </div>
                 </div>
             <?php endforeach; ?>
         </div>
     </div>
 
-    <!-- Search preview JS -->
-    <script>
-        const searchInput = document.getElementById('search-input');
-        const searchPreview = document.getElementById('search-preview');
+    <div class="modal fade" id="movieModal" tabindex="-1" aria-labelledby="movieModalCardLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content  mx-auto">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="movieModalCardLabel"><?php echo htmlspecialchars($movie['title']); ?></h5>
+                    <button type="button" class="close bg-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" >&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body bg-dark text-white">
+                    <img src="../assets/images/<?php echo htmlspecialchars($movie['image']); ?>" class="img-fluid mb-4 w-50" alt="<?php echo htmlspecialchars($movie['title']); ?>" id="moviePoster">
+                    <p id="movieOverview"><?php echo htmlspecialchars($movie['description']); ?></p>
+                    <ul class="list-group">
 
-        let timer;
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- modal js -->
+<script>
+    document.querySelectorAll('button[data-toggle="modal"]').forEach(button => {
+        button.addEventListener('click', function() {
+            const title = this.getAttribute('data-title');
+            const image = this.getAttribute('data-image');
+            const description = this.getAttribute('data-description');
 
-        searchInput.addEventListener('input', function() {
-            const term = this.value.trim();
-            clearTimeout(timer);
-
-            timer = setTimeout(() => {
-                if (term.length === 0) {
-                    searchPreview.innerHTML = '';
-                    searchPreview.style.display = 'none';
-                    return;
-                }
-
-                fetch(`../handlers/searchMovies.php?q=${encodeURIComponent(term)}`)
-                    .then(res => res.text())
-                    .then(data => {
-                        searchPreview.innerHTML = data;
-                        searchPreview.style.display = data.trim() === '' ? 'none' : 'block';
-                    });
-            }, 200); // debounce
+            document.getElementById('movieModalCardLabel').textContent = title;
+            document.getElementById('moviePoster').src = `../assets/images/${image}`;
+            document.getElementById('movieOverview').textContent = description;
         });
+    });
+</script>
 
-        // Hide preview when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!searchPreview.contains(e.target) && e.target !== searchInput) {
-                searchPreview.style.display = 'none';
-            }
-        });
-    </script>
+<!-- Page JS (search preview ) -->
+ <script src="../assets/js/movie-search.js"></script>
 
 </body>
 
