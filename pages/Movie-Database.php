@@ -37,6 +37,13 @@
         </ul>
     </nav>
 
+    <!-- To Do:
+     1. Condense Database table that contains [Movie ID, Total Tickets sold, 4 Action buttons (details, edit, delete, upload image)]
+        -1a. The action buttons when clicked should have a modal pop up to show the details of the movie, edit the movie details, delete the movie, and upload an image for the movie
+     2. Implement a search feature to find movies by title that also include 4 action buttons
+     3. Add a prevention of movie deletion if there are tickets sold for that movie
+    --->
+
     <!-- Page layout -->
     <div>
         <div class="container-xl mt-4 p-4 bg-white ">
