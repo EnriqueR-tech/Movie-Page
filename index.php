@@ -63,6 +63,13 @@ $movie = $featured->fetch_assoc();
         
     </nav>
 
+    <!-- To Do
+     1. Implement a mock user login system to restrict access to the authorized access dropdown menu
+        1a. Create a simple login page that sets a session variable to indicate the user is logged in
+        1b. Add a logout option that clears the session variable and redirects to the login page
+      -->
+
+
     <div class="container text-center mt-5">
         <h2>Welcome to Team Popcorn 🎬</h2>
         <p class="text-muted">Dallas College Movie Booking System</p>

@@ -33,25 +33,25 @@ CREATE TABLE `movies` (
   `runtime` time NOT NULL,
   `rating` decimal(3,1) NOT NULL,
   `description` text NOT NULL,
-  `image` varchar(255) NOT NULL
+  `image` varchar(255) NOT NULL,
+  `trailer_url` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='Storing movie info';
 
 --
 -- Dumping data for table `movies`
 --
 
-INSERT INTO `movies` (`movie_id`, `title`, `runtime`, `rating`, `description`, `image`) VALUES
-(1, 'A Minecraft Movie', '01:41:00', 5.6, 'Four misfits are suddenly pulled through a mysterious portal into a bizarre cubic wonderland that thrives on imagination. To get back home they\'ll have to master this world while embarking on a quest with an unexpected expert crafter.', 'AMinecraftMovie.jpg'),
-(2, 'Summer Wars', '01:54:00', 7.4, 'A student tries to fix a problem he accidentally caused in OZ, a digital world, while pretending to be the fiancé of his friend at her grandmother\'s 90th birthday.', 'SummerWars.jpg'),
-(3, 'Point Break', '02:51:02', 7.2, 'An F.B.I. Agent goes undercover to catch a gang of surfers who may be bank robbers.', 'PointBreak.jpg'),
-(6, 'Starship Troopers(1997)', '02:09:00', 7.3, 'Humans, in a fascist militaristic future, wage war with giant alien bugs. Would you like to know more?', 'StarshipTroopers.jpg'),
-(7, 'Hello World', '00:00:10', 14.0, 'Hello From Dallas College and Team Popcorn. This is a test of Input Data on this form', 'HelloWorld.jpg'),
-(8, 'Transformers(2007)', '02:24:00', 7.6, 'An ancient struggle between two Cybertronian races, the heroic Autobots and the evil Decepticons, comes to Earth, with a clue to the ultimate power held by a teenager.', 'Transformers_2007.jpg'),
-(9, 'John Wick', '01:40:00', 10.0, '     Hello World Testing 4', ''),
-(10, 'Unbreakable(200)', '01:47:00', 10.0, '   A man learns something extraordinary about himself after a devastating accident.', ''),
-(12, 'Sasuage Party', '02:00:00', 2.0, ' A terrible rated R movie that tricked parents thinking this is a cute PG-13 movie with cutesy food characters, but it contain ADULT THEME AND ADULT HUMOR (college humor)', 'SasuageParty.jpg'),
-(14, 'Project Hail Mary', '02:03:50', 8.0, '  Science teacher Ryland Grace (Ryan Gosling) wakes up on a spaceship light years from home with no recollection of who he is or how he got there. As his memory returns, he begins to uncover his mission: solve the riddle of the mysterious substance causing the sun to die out. He must call on his scientific knowledge and unorthodox ideas to save everything on Earth from extinction… but an unexpected friendship means he may not have to do it alone.', ''),
-(17, 'Ghost In The Shell', '01:22:40', 8.0, ' In the year 2029, the world has become interconnected by a vast electronic network that permeates every aspect of life. That same network also becomes a battelfield for Tokyo\'s Section Nine security force, which has been charged with apprehending the master hacker known only as the Puppet Master. Spearheading the investigation is Major Motoko Kusanagi, who - like many in her department - is a cyborg officer, far more powerful than her human appearance would suggest. And yet as the Puppet Master, who is even capable of hacking human minds, leaves a trail of victims robbed of their memories. Motoko begins to ponder the very nature of her existence: is she purely an artificial construct, or is there more? What, exactly, is the ', 'GhostInTheShell.jpg');
+INSERT INTO `movies` (`movie_id`, `title`, `runtime`, `rating`, `description`, `image`, `trailer_url`) VALUES
+(1, 'A Minecraft Movie', '01:41:00', 5.6, 'Four misfits are suddenly pulled through a mysterious portal into a bizarre cubic wonderland that thrives on imagination. To get back home they\'ll have to master this world while embarking on a quest with an unexpected expert crafter.', 'AMinecraftMovie.jpg', 'PE2YZhcC4NY'),
+(2, 'Summer Wars', '01:54:00', 7.4, 'A student tries to fix a problem he accidentally caused in OZ, a digital world, while pretending to be the fiancé of his friend at her grandmother\'s 90th birthday.', 'SummerWars.jpg', 'Rc8_JO4NAI0'),
+(3, 'Point Break', '02:51:02', 7.2, 'An F.B.I. Agent goes undercover to catch a gang of surfers who may be bank robbers.', 'PointBreak.jpg', 'jcDD2-s4vWA'),
+(6, 'Starship Troopers(1997)', '02:09:00', 7.3, 'Humans, in a fascist militaristic future, wage war with giant alien bugs. Would you like to know more?', 'StarshipTroopers.jpg', 'zPYuV_jGk7M'),
+(7, 'Hello World', '00:00:10', 14.0, 'Hello From Dallas College and Team Popcorn. This is a test of Input Data on this form', 'HelloWorld.jpg', 'kh6gSLInIXo'),
+(8, 'Transformers(2007)', '02:24:00', 7.6, 'An ancient struggle between two Cybertronian races, the heroic Autobots and the evil Decepticons, comes to Earth, with a clue to the ultimate power held by a teenager.', 'Transformers_2007.jpg', 'CbX_SIz_9fk'),
+(9, 'John Wick', '01:40:00', 10.0, '     Hello World Testing 4', '', 'C0BMx-qxsP4'),
+(10, 'Unbreakable(200)', '01:47:00', 10.0, '   A man learns something extraordinary about himself after a devastating accident.', '', 'fNeCB2ALNoA'),
+(14, 'Project Hail Mary', '02:03:50', 8.0, '  Science teacher Ryland Grace (Ryan Gosling) wakes up on a spaceship light years from home with no recollection of who he is or how he got there. As his memory returns, he begins to uncover his mission: solve the riddle of the mysterious substance causing the sun to die out. He must call on his scientific knowledge and unorthodox ideas to save everything on Earth from extinction… but an unexpected friendship means he may not have to do it alone.', '', ''),
+(17, 'Ghost In The Shell', '01:22:40', 8.0, ' In the year 2029, the world has become interconnected by a vast electronic network that permeates every aspect of life. That same network also becomes a battelfield for Tokyo\'s Section Nine security force, which has been charged with apprehending the master hacker known only as the Puppet Master. Spearheading the investigation is Major Motoko Kusanagi, who - like many in her department - is a cyborg officer, far more powerful than her human appearance would suggest. And yet as the Puppet Master, who is even capable of hacking human minds, leaves a trail of victims robbed of their memories. Motoko begins to ponder the very nature of her existence: is she purely an artificial construct, or is there more? What, exactly, is the ', 'GhostInTheShell.jpg', 'aADTX6CmIx4');
 
 -- --------------------------------------------------------
 
@@ -145,7 +145,7 @@ ALTER TABLE `movies`
 -- AUTO_INCREMENT for table `screenings`
 --
 ALTER TABLE `screenings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tickets`
