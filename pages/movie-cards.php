@@ -58,12 +58,6 @@ $movies = $result->fetch_all(MYSQLI_ASSOC);
         </div>
     </nav>
 
-    <!-- To Do
-     1. Implement a modal pop up to get full details of the movie when the user clicks on the movie card
-        1a. Replace 'Get Tickets' button with 'View Details' button that will trigger the modal pop up    
-    -->
-
-    <!-- Movie Grid -->
     <div class="container mt-4">
         <h1 class="text-center mb-4">Now Showing</h1>
         <div class="row" id="movieGrid">
@@ -78,17 +72,16 @@ $movies = $result->fetch_all(MYSQLI_ASSOC);
                         </a>
 
                         <div class="p-3">
-                            <h4><?php echo htmlspecialchars($movie['title']); ?></h4>
-                            <p>
-                                <?php
-                                $t = explode(":", $movie['runtime']);
-                                echo intval($t[0]) . " HR " . intval($t[1]) . " MIN | " . htmlspecialchars($movie['rating']);
-                                ?>
-                            </p>
+                            <h4 class="mb-4"><?php echo htmlspecialchars($movie['title']); ?></h4>
                             <button class="btn btn-danger btn-block"
                              data-toggle="modal" data-target="#movieModal"
-                              data-title="<?php echo htmlspecialchars($movie['title']); ?>" data-image="<?php echo htmlspecialchars($movie['image']); ?>" data-description="<?php echo htmlspecialchars($movie['description']); ?>"    
-                              data-movie-id="<?php echo $movie['movie_id']; ?>">More Details</button>
+                              data-title="<?php echo htmlspecialchars($movie['title']); ?>"
+                              data-runtime="<?php echo htmlspecialchars($movie['runtime']); ?>"
+                              data-rating="<?php echo htmlspecialchars($movie['rating']); ?>"
+                            data-image="<?php echo htmlspecialchars($movie['image']); ?>"
+                             data-description="<?php echo htmlspecialchars($movie['description']); ?>"    
+                              data-movie-id="<?php echo $movie['movie_id']; ?>"
+                              data-trailer="<?php echo trim($movie['trailer_url']); ?>">More Details</button>
                         </div>
                     </div>
                 </div>
@@ -99,39 +92,99 @@ $movies = $result->fetch_all(MYSQLI_ASSOC);
     <div class="modal fade" id="movieModal" tabindex="-1" aria-labelledby="movieModalCardLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content  mx-auto">
+
                 <div class="modal-header bg-dark text-white">
-                    <h5 class="modal-title" id="movieModalCardLabel"><?php echo htmlspecialchars($movie['title']); ?></h5>
                     <button type="button" class="close bg-white" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" >&times;</span>
                     </button>
                 </div>
-                <div class="modal-body bg-dark text-white">
-                    <img src="../assets/images/<?php echo htmlspecialchars($movie['image']); ?>" class="img-fluid mb-4 w-50" alt="<?php echo htmlspecialchars($movie['title']); ?>" id="moviePoster">
-                    <p id="movieOverview"><?php echo htmlspecialchars($movie['description']); ?></p>
-                    <ul class="list-group">
 
-                    </ul>
+                <div class="modal-body bg-dark text-white">
+                    <section class="movie-hero">
+                        <div class="hero-bg" id="movieHeroBg"
+                        style="background-image: url('../assets/images/<?php echo htmlspecialchars($movie['image']); ?>');">
+                            <div class="hero-overlay"></div>
+                            <div class="hero-content">
+
+                                <div class="hero-poster">
+                                    <img src="../assets/images/<?php echo $movie['image']; ?>" id="moviePoster" alt="<?php echo htmlspecialchars($movie['title']); ?>">
+                                </div>
+
+                                <div class="hero-info">
+
+                                    <h1 id="movieModalCardLabel"><?php echo $movie['title']; ?></h1>
+
+                                    <div class="d-flex justify-content-start mb-3 ">
+                                        <h4 class="mb-3 mr-4">
+                                            <span class="badge badge-success p-2" id="movieRuntime">Runtime: <?php
+                                                $t = explode(":", $movie['runtime']);
+                                                echo intval($t[0]) . " HR " . intval($t[1]) . " MIN";
+                                                ?> </span>
+                                        </h4>
+                                        <h4 class="mb-3">
+                                            <span class="badge badge-info p-2" id="movieRating">Rating: <?php echo htmlspecialchars($movie['rating']); ?> </span>
+                                        </h4>
+                                    </div>
+
+                                    <p class="desc" id="movieOverview">
+                                        <?php echo $movie['description']; ?>
+                                    </p>
+                                    <a class="btn-ticket"
+                                    href="tickets-purchase.php?movie_id=<?php echo $movie['movie_id']; ?>">
+                                    Get Tickets
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                    
+                    <iframe id="movieTrailer" width="100%" height="400" src='https://www.youtube.com/embed/ <?php echo htmlspecialchars($movie['trailer_url']); ?>' title="YouTube video player" frameborder="0" ></iframe>
+
                 </div>
             </div>
         </div>
     </div>
+    
 <!-- modal js -->
 <script>
     document.querySelectorAll('button[data-toggle="modal"]').forEach(button => {
         button.addEventListener('click', function() {
+            document.getElementById('movieHeroBg').style.backgroundImage
+                = "url('../assets/images/" + this.getAttribute('data-image') + "')";
+                
+                
             const title = this.getAttribute('data-title');
             const image = this.getAttribute('data-image');
+            const runtime = this.getAttribute('data-runtime');
+            const rating = this.getAttribute('data-rating');
             const description = this.getAttribute('data-description');
+            const trailer = this.getAttribute('data-trailer');
 
+            const runtimeParts = runtime.split(':');
+            const runtimeDisplay = parseInt(runtimeParts[0]) + " HR " + parseInt(runtimeParts[1]) + " MIN";
+
+           
+            
             document.getElementById('movieModalCardLabel').textContent = title;
             document.getElementById('moviePoster').src = `../assets/images/${image}`;
             document.getElementById('movieOverview').textContent = description;
+            document.getElementById('movieTrailer').src = 'https://www.youtube.com/embed/' + trailer;
+            document.getElementById('movieRuntime').textContent = 'Runtime: ' + runtimeDisplay;
+            document.getElementById('movieRating').textContent = 'Rating: ' + rating;
+            document.getElementById('movieHeroBg').style.backgroundImage = "url('../assets/images/" + image + "')";
         });
+    });
+        // Close modal - reset iframe so it doesn't bug out
+    document.getElementById('movieModal').addEventListener('hidden.bs.modal', function() {
+        document.getElementById('movieTrailer').src = '';
     });
 </script>
 
 <!-- Page JS (search preview ) -->
  <script src="../assets/js/movie-search.js"></script>
+
+ 
 
 </body>
 
