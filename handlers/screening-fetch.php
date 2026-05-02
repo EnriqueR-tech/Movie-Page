@@ -18,6 +18,12 @@ while($row = $result->fetch_assoc()) {
         'title' => 'At: ' . $row['theater_name'] . ' - ' . $row['title'],
         'start' => $row['start_time'],
         'end'   => $row['end_time'],
+        'extendedProps' => [
+            'movie_id' => $row['movie_id'],
+            'theater_name' => $row['theater_name'],
+            'date' => date('Y-m-d', strtotime($row['start_time'])),
+            'time' => date('H:i', strtotime($row['start_time']))
+        ],
         'color' => '#e50914' // AMC Red
     ];
 }
