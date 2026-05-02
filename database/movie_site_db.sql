@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2026 at 12:57 AM
+-- Generation Time: May 02, 2026 at 08:33 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -79,8 +79,11 @@ INSERT INTO `screenings` (`id`, `movie_id`, `theater_name`, `start_time`, `end_t
 (4, 2, 'AMC DINE-IN Mesquite 30', '2026-04-07 16:00:00', '2026-04-07 17:00:00', 98),
 (5, 1, 'AMC Plaza 15', '2026-04-06 14:00:00', '2026-04-06 16:00:00', 100),
 (8, 14, 'AMC DINE-IN Mesquite 30', '2026-04-16 14:00:00', '2026-04-16 16:30:00', 30),
-(9, 17, 'AMC DINE-IN Mesquite 30', '2026-04-16 12:00:00', '2026-04-16 14:00:00', 60),
-(10, 2, 'AMC CLASSIC Forney 12', '2026-04-17 12:00:00', '2026-04-17 14:30:00', 28);
+(9, 17, 'AMC DINE-IN Mesquite 30', '2026-04-16 12:00:00', '2026-04-16 14:00:00', 59),
+(10, 2, 'AMC CLASSIC Forney 12', '2026-04-17 12:00:00', '2026-04-17 14:30:00', 22),
+(11, 8, 'AMC DINE-IN Mesquite 30', '2026-04-16 17:00:00', '2026-04-16 20:00:00', 0),
+(12, 9, 'AMC NorthPark 15', '2026-04-16 17:00:00', '2026-04-16 20:00:00', 0),
+(13, 1, 'AMC DINE-IN Mesquite 30', '2026-05-02 14:00:00', '2026-05-02 16:00:00', 15);
 
 -- --------------------------------------------------------
 
@@ -91,21 +94,28 @@ INSERT INTO `screenings` (`id`, `movie_id`, `theater_name`, `start_time`, `end_t
 CREATE TABLE `tickets` (
   `id` int(11) NOT NULL,
   `movie_id` int(11) NOT NULL,
+  `screening_id` int(11) NOT NULL,
   `customer_name` varchar(100) NOT NULL,
   `tickets` int(11) NOT NULL,
   `theater_loc` varchar(255) NOT NULL,
   `show_date` date NOT NULL,
-  `show_time` time NOT NULL
+  `show_time` time NOT NULL,
+  `ticket_code` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='To store movie tickets and connect table to movie details';
 
 --
 -- Dumping data for table `tickets`
 --
 
-INSERT INTO `tickets` (`id`, `movie_id`, `customer_name`, `tickets`, `theater_loc`, `show_date`, `show_time`) VALUES
-(1, 2, 'Enrique R', 1, '', '2026-03-27', '15:00:00'),
-(2, 2, 'NEMO', 1, 'AMC DINE-IN Mesquite 30', '2026-04-07', '16:00:00'),
-(3, 2, 'NEMO', 2, 'AMC CLASSIC Forney 12', '2026-04-17', '12:00:00');
+INSERT INTO `tickets` (`id`, `movie_id`, `screening_id`, `customer_name`, `tickets`, `theater_loc`, `show_date`, `show_time`, `ticket_code`) VALUES
+(1, 2, 0, 'Enrique R', 1, '', '2026-03-27', '15:00:00', 'dcb7514f-45e4-11f1-9a32-7085c2c543ab'),
+(2, 2, 0, 'NEMO', 1, 'AMC DINE-IN Mesquite 30', '2026-04-07', '16:00:00', 'dcb766d7-45e4-11f1-9a32-7085c2c543ab'),
+(3, 2, 0, 'NEMO', 2, 'AMC CLASSIC Forney 12', '2026-04-17', '12:00:00', 'dcb76757-45e4-11f1-9a32-7085c2c543ab'),
+(4, 2, 0, 'NEMO', 2, 'AMC CLASSIC Forney 12', '2026-04-17', '12:00:00', 'dcb767a4-45e4-11f1-9a32-7085c2c543ab'),
+(5, 2, 0, 'FanGirl', 4, 'AMC CLASSIC Forney 12', '2026-04-17', '12:00:00', 'dcb767df-45e4-11f1-9a32-7085c2c543ab'),
+(6, 17, 0, 'NEMO', 1, 'AMC DINE-IN Mesquite 30', '2026-04-16', '12:00:00', 'dcb76813-45e4-11f1-9a32-7085c2c543ab'),
+(13, 1, 13, 'Goober', 1, 'AMC DINE-IN Mesquite 30', '0000-00-00', '14:00:00', 'TK-69F5978E561B3'),
+(15, 1, 13, 'Goober', 1, 'AMC DINE-IN Mesquite 30', '2026-05-02', '14:00:00', 'TK-69F59A4C0B355');
 
 --
 -- Indexes for dumped tables
@@ -129,7 +139,9 @@ ALTER TABLE `screenings`
 --
 ALTER TABLE `tickets`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `movie_id` (`movie_id`);
+  ADD UNIQUE KEY `idx_tickets_code` (`ticket_code`),
+  ADD KEY `movie_id` (`movie_id`),
+  ADD KEY `screening_id` (`screening_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -139,19 +151,19 @@ ALTER TABLE `tickets`
 -- AUTO_INCREMENT for table `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `movie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `screenings`
 --
 ALTER TABLE `screenings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
@@ -167,7 +179,8 @@ ALTER TABLE `screenings`
 -- Constraints for table `tickets`
 --
 ALTER TABLE `tickets`
-  ADD CONSTRAINT `tickets_ibfk_1` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`movie_id`);
+  ADD CONSTRAINT `tickets_ibfk_1` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`movie_id`),
+  ADD CONSTRAINT `tickets_ibfk_2` FOREIGN KEY (`screening_id`) REFERENCES `screenings` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
