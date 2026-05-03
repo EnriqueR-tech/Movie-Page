@@ -38,11 +38,16 @@
     </nav>
 
     <!-- To Do:
-     1. Condense Database table that contains [Movie ID, Total Tickets sold, 4 Action buttons (details, edit, delete, upload image)]
+     1. Condense Database table with 3 action buttons for each movie: Edit, Delete, Make it unavailable for purchase 
         -1a. The action buttons when clicked should have a modal pop up to show the details of the movie, edit the movie details, delete the movie, and upload an image for the movie
+        -1b. Include ticket sales for each movie and make it unavaliable for purchase if there are tickets sold for that movie
+        -1c. On the action buttons, it should redirect to a new page that shows the details of the movie and have the option to edit the details, delete the movie, and upload an image for the movie
      2. Implement a search feature to find movies by title that also include 4 action buttons
      3. Add a prevention of movie deletion if there are tickets sold for that movie
-    --->
+        3a. Instead messing with the DB, make it unavaliable for purchase and add a note that says "This movie is no longer available for purchase"
+        3b. Create a seperate table for authorized view that shows "Current avaliable movies and unavailable movies -->
+
+    
 
     <!-- Page layout -->
     <div>
