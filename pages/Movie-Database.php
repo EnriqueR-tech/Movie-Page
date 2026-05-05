@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <?php include "../config/header.php" ;?>
+
+<!-- Fetch tickets from ticket table -->
 
 <body>
     <!-- Title -->
@@ -54,11 +57,13 @@
         <div class="container-xl mt-4 p-4 bg-white ">
             <table class="table table-bordered table-hover> ">
                 <thead class="thead-dark">
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Runtime (HH:MM)</th>
-                    <th>Rating</th>
-                    <th>Description</th>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Runtime (HH:MM)</th>
+                        <th>Total Tickets Sold</th>
+                        <th>Actions</th>
+                    </tr>
                 </thead>
                 <tbody>
                     <?php
@@ -66,18 +71,42 @@
                     include "../config/connection.php";
 
                     //read all row from database -> movie details table
-                    $sql = "SELECT * FROM `movies`";
+                    $sql = "SELECT m.*, COALESCE(SUM(t.tickets), 0) as total_tickets_sold
+                     FROM movies m
+                     LEFT JOIN tickets t ON m.movie_id = t.movie_id
+                     GROUP BY m.movie_id";
                     $result = $connection->query($sql);
 
                     //Read data of each row -> contains 5 rows
                     while($row = $result->fetch_assoc()){
+
+                        $ticketCount = (int)$row["total_tickets_sold"];
+                        $badgeClass = $ticketCount > 0 ? "badge-success" : "badge-secondary";
+
+                        $id = $row["movie_id"];
+                        $title = $row["title"];
+                        $runtime = $row["runtime"];
+                        $rating = $row["rating"];
+                        $description = $row["description"];
+                        $image = $row["image"];
+
                         echo "<tr>
                             <td>" . $row["movie_id"] ."</td>
-                            <td>" . $row["title"] ."</td>
-                            <td>" . $row["runtime"] ."</td>
-                            <td>" . $row["rating"] ."</td>
-                            <td>" . $row["description"] ."</td>
+                            <td class='font-weight-bold'>" . $row["title"] ."</td>
+                            <td class='text-center'>" . $row["runtime"] ."</td>
+                            <td class='text-center'>
+                                <span class='badge p-2 {$badgeClass}'>" . $row["total_tickets_sold"] . "</span>
+                            </td>
                             <td>
+                            <a href='../handlers/movies-view.php?id=" . $row["movie_id"] . "' 
+                            class='btn btn-dark mb-2'
+                            data-toggle='modal' data-target='#movieModal'
+                              data-movie-id='{$id}'
+                              data-title='{$title}'
+                              data-runtime='{$runtime}'
+                              data-rating='{$rating}'
+                              data-description='{$description}'
+                              data-image='{$image}'>Details</a>
                             <a href='../handlers/movies-edit.php?id=" . $row["movie_id"] . "' class='btn mb-2' style='background-color: #2265e2; color: white;'>Edit</a>
                             <a href='../handlers/movies-delete.php?id=" . $row["movie_id"] . "' onclick='return confirm(\"Delete this movie?\")' class='btn btn-danger mb-2'>Delete</a>
                             <a href='../handlers/movies-uploadimage.php?id=" . $row["movie_id"] . "' class='btn btn-link'>Upload Image</a>
@@ -116,5 +145,51 @@
     <p> Designed by Team Popcorn: Enrique, Jesus, Hans, Nyab</p>
     </footer>
 </div>
+
+
+<div class="modal fade" id="movieModal" tabindex="-1" aria-labelledby="movieModalCardLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content  mx-auto">
+
+                <div class="modal-header bg-dark text-white">
+                    <button type="button" class="close bg-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" >&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body bg-dark text-white">
+                    <section class="movie-hero">
+                            <div class="hero-content">
+
+                                <div class="hero-poster">
+                                    <img src="" id="moviePoster" alt="Movie Poster" class="img-fluid rounded">
+                                </div>
+
+                                <div class="hero-info">
+                                    <h1 id="movieModalCardLabel"></h1>
+
+                                    <div class="d-flex justify-content-start mb-3 ">
+                                        <h4 class="mb-3 mr-4">
+                                            <span class="badge badge-success p-2" id="movieRuntime"> </span>
+                                        </h4>
+                                        <h4 class="mb-3">
+                                            <span class="badge badge-info p-2" id="movieRating"></span>
+                                        </h4>
+                                    </div>
+
+                                    <p class="desc" id="movieOverview"></p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ <!-- Modal Cards button JS -->
+ <script src="../assets/js/movie-databaseModal.js"></script>
+
 </body>
 </html>
