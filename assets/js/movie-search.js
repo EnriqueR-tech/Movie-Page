@@ -1,5 +1,4 @@
 
-
 const searchInput = document.getElementById('search-input');
 const searchPreview = document.getElementById('search-preview');
 

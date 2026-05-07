@@ -12,7 +12,7 @@ if ($q === '') {
 }
 
 // Fetch top 5 matching movies
-$sql = "SELECT movie_id, title, image FROM movies WHERE title LIKE '%$q%' ORDER BY title ASC LIMIT 5";
+$sql = "SELECT movie_id, title, image FROM movies WHERE title  LIKE '%$q%' AND is_hidden = 0 ORDER BY title ASC LIMIT 5";
 $result = $connection->query($sql);
 
 if ($result->num_rows == 0) {

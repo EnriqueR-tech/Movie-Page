@@ -20,7 +20,7 @@ $movie = null;
 
 if ($selectedMovie) {
     $stmt = $connection->prepare("
-        SELECT * FROM movies WHERE movie_id = ?
+        SELECT * FROM movies WHERE movie_id = ? AND is_hidden = 0
     ");
     $stmt->bind_param("i", $selectedMovie);
     $stmt->execute();
@@ -30,6 +30,7 @@ if ($selectedMovie) {
 $stmt = $connection->prepare("
     SELECT movie_id, title
     FROM movies
+    WHERE is_hidden = 0
     ORDER BY title
 ");
 $stmt->execute();
@@ -43,7 +44,7 @@ if ($selectedMovie) {
         FROM screenings
         WHERE movie_id = ?
         AND capacity > 0
-        ORDER BY start_time
+        ORDER BY start_time AND movie_id ASC
     ");
 
     $stmt->bind_param("i", $selectedMovie);
@@ -87,7 +88,7 @@ if ($selectedMovie) {
         </li>
 
         <li class="nav-item">
-            <a class="nav-link text-white" href="about-us.php">About Us</a>
+            <a class="nav-link text-white" href="aboutus.php">About Us</a>
         </li>
 
     </ul>
