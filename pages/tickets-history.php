@@ -48,7 +48,7 @@ $result = $stmt->get_result();
         <li class="nav-item"><a class="nav-link text-white" href="movie-cards.php">Movies</a></li>
         <li class="nav-item"><a class="nav-link text-white" href="tickets-purchase.php">Get Tickets</a></li>
         <li class="nav-item"><a class="nav-link active bg-danger" href="tickets-history.php">History</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="about-us.php">About Us</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="aboutus.php">About Us</a></li>
     </ul>
 </nav>
 
