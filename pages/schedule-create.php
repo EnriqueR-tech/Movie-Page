@@ -63,7 +63,7 @@
                         <option selected>Choose Movie...</option>
                         <?php
                             include "../config/connection.php";
-                            $sql = "SELECT movie_id, title FROM `movies`";
+                            $sql = "SELECT movie_id, title FROM `movies` WHERE is_hidden = 0 ORDER BY title ASC";
                             $result = $connection->query($sql);
 
                             if ($result->num_rows > 0) {

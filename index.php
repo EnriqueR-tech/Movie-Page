@@ -49,8 +49,11 @@ $movie = $featured->fetch_assoc();
         <ul class="nav nav-pills nav-fill">
             <li class="nav-item"><a class="nav-link active bg-danger" href="index.php">Home</a></li>
             <li class="nav-item"><a class="nav-link text-white" href="pages/movie-cards.php">Movies</a></li>
+             <li class="nav-item">
+            <a class="nav-link text-white" href="pages/tickets-history.php">History</a>
+            </li>
             <li class="nav-item"><a class="nav-link text-white" href="pages/tickets-purchase.php">Get Tickets</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="pages/aboutUs.php">About Us</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="pages/aboutus.php">About Us</a></li>
             <li class="nav-item dropdown">
                 <a class="nav-link text-white dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Authorized Access

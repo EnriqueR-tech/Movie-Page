@@ -3,7 +3,7 @@ session_start();
 include "../config/connection.php";
 
 // Fetch all movies for the main grid
-$result = $connection->query("SELECT * FROM movies ORDER BY movie_id ASC");
+$result = $connection->query("SELECT * FROM movies WHERE is_hidden = 0 ORDER BY movie_id ASC");
 $movies = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
@@ -30,7 +30,8 @@ $movies = $result->fetch_all(MYSQLI_ASSOC);
                     <li class="nav-item"><a class="nav-link text-white" href="../index.php">Home</a></li>
                     <li class="nav-item"><a class="nav-link active bg-danger" href="movie-cards.php">Movies</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="tickets-purchase.php">Get Tickets</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="aboutUs.php">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="tickets-history.php">History</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="aboutus.php">About Us</a></li>
                 </ul>
             </div>
 
