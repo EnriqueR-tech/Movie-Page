@@ -21,6 +21,22 @@ $id     = (int)$_GET["id"];
 $action = $_GET["action"];
 
 if ($action === "hide") {
+        // Block hide if active/future screenings exist
+    $check = $connection->prepare("
+        SELECT id FROM screenings
+        WHERE movie_id = ? AND end_time > NOW()
+    ");
+    $check->bind_param("i", $id);
+    $check->execute();
+    $check->store_result();
+
+    if ($check->num_rows > 0) {
+        $check->close();
+        header("Location: ../pages/Movie-Database.php?msg=blocked");
+        exit();
+    }
+    $check->close();
+
     $isHidden = 1;
     $msg      = "hidden";
 } elseif ($action === "show") {

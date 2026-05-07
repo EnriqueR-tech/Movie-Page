@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include "../config/header.php" ;?>
+<?php 
+include "../config/header.php" ;?>
 
 <body>
     <div>
@@ -42,6 +43,7 @@
         $msgMap = [
             'hidden'   => ['warning', '&#128683; Movie is now hidden from customers and scheduling.'],
             'restored' => ['success', '&#9989; Movie is now visible to customers.'],
+            'blocked'  => ['danger',  '&#9888; Cannot hide — this movie still has active or upcoming screenings.'],
         ];
         if (isset($msgMap[$_GET['msg']])) {
             [$type, $text] = $msgMap[$_GET['msg']];
